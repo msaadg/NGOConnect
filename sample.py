@@ -1,159 +1,90 @@
+# Database:
+
+# NGO {
+# 	ngoID int pk increments
+# 	name varchar
+# 	regDate date
+# 	address varchar
+# }
+
+# Project {
+# 	projectID int pk increments
+# 	ngoID int *> NGO.ngoID
+# 	projectName varchar
+# 	scale int
+# 	startDate date
+# 	endDate date null
+# }
+
+# User {
+# 	userID int pk increments
+# 	userEmail varchar
+# 	userName varchar
+# 	userPassword varchar
+# }
+
+# Category {
+# 	categoryName varchar pk
+# }
+
+# SavedProject {
+# 	projectID int pk *> Project.projectID
+# 	userID int pk *> User.userID
+# }
+
+# DonatedProject {
+# 	projectID int pk *> Project.projectID
+# 	userID int pk *> User.userID
+# }
+
+# OperatingCategories {
+# 	ngoID int pk *> NGO.ngoID
+# 	categoryName varchar pk *> Category.categoryName
+# }
+
+# Area {
+# 	areaCode int pk increments
+# 	areaName varchar
+# 	city varchar
+# 	country varchar
+# }
+
+# OperatingAreas {
+# 	areaCode int pk *> Area.areaCode
+# 	ngoID int pk *> NGO.ngoID
+# }
+
+# Worker {
+# 	workerID int pk increments
+# 	ngoID int *> NGO.ngoID
+# 	workerEmail varchar
+# 	workerName varchar
+# 	workerPassword varchar
+# 	gender varchar
+# 	age int
+# }
+
+# WorkerProject {
+# 	workerID int pk *> Worker.workerID
+# 	projectID int pk *> Project.projectID
+# 	workerStatus varchar
+# }
+
+
+
+
+# Importing essential modules
 from PyQt6 import QtWidgets, uic, QtCore
 from PyQt6.QtCore import QDate, QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
 
+# Main Window Class
 class UI(QtWidgets.QMainWindow):
     def __init__(self):
         # Call the inherited classes __init__ method
-        super(UI, self).__init__() 
-        # Load the .ui file
-        uic.loadUi('HomeScreen.ui', self) 
-        # self.setStyleSheet("background-color: lightyellow")
-
-        self.NGOSignUpButton.clicked.connect(self.NGOSignUp)
-        self.NGOLoginButton.clicked.connect(self.NGOLogin)
-        self.UserSignUpButton.clicked.connect(self.UserSignUp)
-        self.UserLoginButton.clicked.connect(self.UserLogin)
-        self.ExitButton.clicked.connect(self.Exit)
-
-        # self.SearchButton.clicked.connect(self.Search)
-
-    def Exit(self):
-        sys.exit()
-    
-    def UserLogin(self):
-
-        self.view_userlogin = ViewUserLogin()
-        self.view_userlogin.show()
-
-    def NGOLogin(self):
-
-        self.view_ngologin = ViewNgoLogin()
-        self.view_ngologin.show()
-
-    def UserSignUp(self):
-
-        self.view_usersignup = ViewUserSignUp()
-        self.view_usersignup.show()
-
-    def NGOSignUp(self):
-
-        self.view_ngosignup = ViewNgoSignUp()
-        self.view_ngosignup.show()
-
-class ViewNgoSignUp(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
-        uic.loadUi('NGOSignUp.ui' , self)
-        # self.setStyleSheet("background-color: yellow")
-        self.CreateNGOButton.clicked.connect(self.NGOCreate)
-
-    def NGOCreate(self):
-        Dialog = QtWidgets.QMessageBox()
-        Dialog.setWindowTitle("Confirmation Box")
-        Dialog.setText("Your NGO Is Successfully Added To The Database")
-        Option = Dialog.exec()
-        if Option == QtWidgets.QMessageBox.StandardButton.Ok:
-            self.close()
-
-        #Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-
-
-
-class ViewUserLogin(QtWidgets.QMainWindow):  
-    def __init__(self):
-        super().__init__()
-
-        uic.loadUi('UserLogin.ui', self)
-        # self.setStyleSheet("background-color: yellow")
-
-
-class ViewUserSignUp(QtWidgets.QMainWindow):  
-    def __init__(self):
-        super().__init__()
-
-        uic.loadUi('UserSignUp.ui', self)
-        # self.setStyleSheet("background-color: yellow")
-        self.CreateUserButton.clicked.connect(self.UserCreate)
-
-    def UserCreate(self):
-        Dialog = QtWidgets.QMessageBox()
-        Dialog.setWindowTitle("Confirmation Box")
-        Dialog.setText("You Are Successfully Registered")
-        Option = Dialog.exec()
-        if Option == QtWidgets.QMessageBox.StandardButton.Ok:
-            self.close()
-
-
-class ViewNgoLogin(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
-        uic.loadUi('NGOLogin.ui' , self)
-        # self.setStyleSheet("background-color: yellow")
-        self.NGOEnterButton.clicked.connect(self.ShowNGO)
-
-    def ShowNGO(self):
-        self.view_ngopage = ViewNgoPage()
-        self.view_ngopage.show()
-        self.close()
-
-    
-class ViewNgoPage(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
-        uic.loadUi('NGOPage.ui' , self)
-        
-        # self.setStyleSheet("background-color: lightyellow")
-        self.ProjectViewButton.clicked.connect(self.ShowProject)
-        self.NewProjectButton.clicked.connect(self.AddProject)
-        self.DeleteButton.clicked.connect(self.DeleteProject)
-    
-    def DeleteProject(self):
-        Dialog = QtWidgets.QMessageBox()
-        Dialog.setWindowTitle("Confirmation Box")
-        Dialog.setText("Are You Sure You Want To Delete This Project?")
-        Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-        Option = Dialog.exec()
-        if Option == QtWidgets.QMessageBox.StandardButton.Yes:
-            #do the delete procedure of project
-            print("abc")
-    
-
-        #Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-
-    def ShowProject(self):
-        self.view_project = ViewProject()
-        self.view_project.show()
-    
-    def AddProject(self):
-        self.new_project = NewProject()
-        self.new_project.show()
-
-
-class NewProject(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
-        uic.loadUi('AddProject.ui',self)
-        
-        # self.setStyleSheet("background-color: lightyellow")
-        self.DoneButton.clicked.connect(self.ProjectAdded)
-    
-    def ProjectAdded(self):
-        Dialog = QtWidgets.QMessageBox()
-        Dialog.setWindowTitle("Confirmation Box")
-        Dialog.setText("Project Is Successfully Added To Yor NGO Data")
-        Option = Dialog.exec()
-        if Option == QtWidgets.QMessageBox.StandardButton.Ok:
-            self.close()
-
-
-
-class ViewProject(QtWidgets.QMainWindow):
-    def __init__(self):
-        # Call the inherited classes __init__ method
-        super().__init__()
+        super(UI, self).__init__()
 
         # Load the .ui file
         uic.loadUi('ViewProject.ui', self)
