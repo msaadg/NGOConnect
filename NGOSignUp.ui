@@ -78,18 +78,18 @@
      <rect>
       <x>20</x>
       <y>170</y>
-      <width>101</width>
+      <width>111</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Re-enter Password:</string>
+     <string>Confirm Password:</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>150</x>
       <y>110</y>
       <width>231</width>
       <height>20</height>
@@ -99,7 +99,7 @@
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>150</x>
       <y>140</y>
       <width>231</width>
       <height>20</height>
@@ -109,7 +109,7 @@
    <widget class="QLineEdit" name="lineEdit_3">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>150</x>
       <y>80</y>
       <width>231</width>
       <height>20</height>
@@ -119,7 +119,7 @@
    <widget class="QLineEdit" name="lineEdit_4">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>150</x>
       <y>170</y>
       <width>231</width>
       <height>20</height>
@@ -131,7 +131,7 @@
      <rect>
       <x>20</x>
       <y>210</y>
-      <width>101</width>
+      <width>111</width>
       <height>23</height>
      </rect>
     </property>
@@ -146,7 +146,7 @@
      <x>0</x>
      <y>0</y>
      <width>520</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

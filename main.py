@@ -212,13 +212,13 @@ class ViewProject(QtWidgets.QMainWindow):
 
         cursor = connection.cursor()
 
-        select_query = "SELECT projectID, ngoID, projectName, scale, startDate from Project where projectID = 1"
+        select_query = "SELECT projectID, name, projectName, scale, startDate from Project p, NGO n where p.ngoID = n.ngoID and projectID = 1"
         cursor.execute(select_query)
 
         # fill line edits
         for row in cursor:
             self.projectID.setText(str(row[0]))
-            self.ngoID.setText(str(row[1]))
+            self.ngoName.setText(str(row[1]))
             self.projectName.setText(str(row[2]))
             self.scale.setText(str(row[3]))
             self.startDate.setDate(QDate.fromString(str(row[4]), "yyyy-MM-dd"))
@@ -228,7 +228,7 @@ class ViewProject(QtWidgets.QMainWindow):
 
         # disable editing of projectID, ngoID, projectName, scale, startDate
         self.projectID.setDisabled(True)
-        self.ngoID.setDisabled(True)
+        self.ngoName.setDisabled(True)
         self.projectName.setDisabled(True)
         self.scale.setDisabled(True)
         self.startDate.setDisabled(True)
