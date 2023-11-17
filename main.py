@@ -92,6 +92,10 @@ class ViewNgoLogin(QtWidgets.QMainWindow):
         super().__init__()
         uic.loadUi('NGOLogin.ui' , self)
         # self.setStyleSheet("background-color: yellow")
+
+        # set NGO Password to be hidden
+        self.ngoPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+
         self.NGOEnterButton.clicked.connect(self.ShowNGO)
 
     def ShowNGO(self):
