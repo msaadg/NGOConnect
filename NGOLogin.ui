@@ -73,7 +73,7 @@
      <string>Password:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ngoPassword">
+   <widget class="QLineEdit" name="ngoUsername">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -83,7 +83,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ngoUsername">
+   <widget class="QLineEdit" name="ngoPassword">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -113,7 +113,7 @@
      <x>0</x>
      <y>0</y>
      <width>442</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
