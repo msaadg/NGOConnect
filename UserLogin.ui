@@ -70,7 +70,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="userLogInPass">
     <property name="geometry">
      <rect>
       <x>90</x>

@@ -106,7 +106,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="userSignUpPass">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -116,7 +116,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="userSignUpConfirmPass">
     <property name="geometry">
      <rect>
       <x>150</x>
