@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>520</width>
-    <height>295</height>
+    <height>397</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,8 +37,8 @@
    <widget class="QPushButton" name="CreateNGOButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>210</y>
+      <x>20</x>
+      <y>240</y>
       <width>111</width>
       <height>23</height>
      </rect>
@@ -107,7 +107,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>140</y>
+      <y>170</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -130,13 +130,36 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>170</y>
+      <y>200</y>
       <width>121</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>Confirm Password:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Email Address: </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ngoSignUpConfirmPass_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>200</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -146,7 +169,7 @@
      <x>0</x>
      <y>0</y>
      <width>520</width>
-     <height>24</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>

@@ -85,7 +85,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>130</y>
+       <y>80</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -98,10 +98,17 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>150</y>
-       <width>81</width>
-       <height>23</height>
+       <y>100</y>
+       <width>331</width>
+       <height>51</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>SIGN-UP</string>
@@ -125,9 +132,16 @@
       <rect>
        <x>10</x>
        <y>260</y>
-       <width>75</width>
-       <height>23</height>
+       <width>331</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>LOGIN</string>
@@ -169,7 +183,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>120</y>
+       <y>80</y>
        <width>151</width>
        <height>21</height>
       </rect>
@@ -182,10 +196,17 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>140</y>
-       <width>81</width>
-       <height>23</height>
+       <y>100</y>
+       <width>311</width>
+       <height>51</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>SIGN-UP</string>
@@ -209,9 +230,16 @@
       <rect>
        <x>10</x>
        <y>260</y>
-       <width>75</width>
-       <height>23</height>
+       <width>311</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>LOGIN</string>
@@ -225,7 +253,7 @@
      <x>0</x>
      <y>0</y>
      <width>789</width>
-     <height>24</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>

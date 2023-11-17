@@ -117,7 +117,13 @@ class ViewNgoPage(QtWidgets.QMainWindow):
         self.ProjectViewButton.clicked.connect(self.ShowProject)
         self.NewProjectButton.clicked.connect(self.AddProject)
         self.DeleteButton.clicked.connect(self.DeleteProject)
+        self.WorkerButton.clicked.connect(self.Worker)
+
+    def Worker(self):
+        self.view_project = WorkerData()
+        self.view_project.show()
     
+       
     def DeleteProject(self):
         Dialog = QtWidgets.QMessageBox()
         Dialog.setWindowTitle("Confirmation Box")
@@ -138,6 +144,34 @@ class ViewNgoPage(QtWidgets.QMainWindow):
     def AddProject(self):
         self.new_project = NewProject()
         self.new_project.show()
+
+class WorkerData(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('WorkerPage.ui' , self)
+
+        self.AddWorkerButton.clicked.connect(self.AddWorker)
+        self.UpdateWorkerButton.clicked.connect(self.UpdateWorker)
+        self.DeleteWorkerButton.clicked.connect(self.removeWorker)
+
+    def AddWorker(self):
+        self.new_worker = WorkerAdd()
+        self.new_worker.show()
+
+
+    def UpdateWorker(self):
+        self.worker_update = WorkerUpdate()
+        self.worker_update.show()
+
+    def removeWorker(self):
+        Dialog = QtWidgets.QMessageBox()
+        Dialog.setWindowTitle("Confirmation Box")
+        Dialog.setText("Are You Sure You Want To Remove This Worker?")
+        Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        Option = Dialog.exec()
+
+
+    
 
 
 class NewProject(QtWidgets.QMainWindow):
@@ -169,8 +203,8 @@ class ViewProject(QtWidgets.QMainWindow):
         self.loadProjectData()
         self.refreshWorkerTable()
         self.addWorkerBtn.clicked.connect(self.addWorker)
-        self.removeWorkerBtn.clicked.connect(self.removeWorker)
-        self.updateBtn.clicked.connect(self.updateWorker)
+        # self.removeWorkerBtn.clicked.connect(self.removeWorker)
+        # self.updateBtn.clicked.connect(self.updateWorker)
 
         # self.timer = QTimer(self)
         # self.timer.timeout.connect(self.refreshWorkerTable)
@@ -187,7 +221,7 @@ class ViewProject(QtWidgets.QMainWindow):
         #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         # )
 
-        server = 'SABIR\SQLEXPRESS'
+        server = 'LAPTOP-KJ0J50KI\SPARTA'
         database = 'NGOConnect'  # Name of your NGOConnect database
         use_windows_authentication = True 
         connection = pyodbc.connect(
@@ -225,7 +259,7 @@ class ViewProject(QtWidgets.QMainWindow):
         #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         # )
 
-        server = 'SABIR\SQLEXPRESS'
+        server = 'LAPTOP-KJ0J50KI\SPARTA'
         database = 'NGOConnect'  # Name of your NGOConnect database
         use_windows_authentication = True 
         connection = pyodbc.connect(
@@ -259,9 +293,9 @@ class ViewProject(QtWidgets.QMainWindow):
         connection.close()
 
     def addWorker(self):
-        self.add_worker = WorkerAdd()
+        self.add_worker = AddWorkerToProject()
         self.add_worker.show()
-        self.add_worker.addWorkerDoneBtn.clicked.connect(self.refreshWorkerTable)
+        # self.add_worker.addWorkerDoneBtn.clicked.connect(self.refreshWorkerTable)
 
     def updateWorker(self):
         workerDetails = []
@@ -284,7 +318,7 @@ class ViewProject(QtWidgets.QMainWindow):
             # connection = pyodbc.connect(
             #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
             # )
-            server = 'SABIR\SQLEXPRESS'
+            server = 'LAPTOP-KJ0J50KI\SPARTA'
             database = 'NGOConnect'  # Name of your NGOConnect database
             use_windows_authentication = True 
             connection = pyodbc.connect(
@@ -309,6 +343,22 @@ class ViewProject(QtWidgets.QMainWindow):
             connection.close()
             self.refreshWorkerTable()
 
+class AddWorkerToProject(QtWidgets.QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('ProjectNewWorker.ui' , self)
+
+        self.DoneButton.clicked.connect(self.NewWorker)
+
+    def NewWorker(self):
+        Dialog = QtWidgets.QMessageBox()
+        Dialog.setWindowTitle("Confirmation Box")
+        Dialog.setText("The Selected Worker Is Successfully Assigned To The Project")
+        Option = Dialog.exec()
+        if Option == QtWidgets.QMessageBox.StandardButton.Ok:
+            self.close()
+
 class WorkerAdd(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -318,7 +368,7 @@ class WorkerAdd(QtWidgets.QMainWindow):
     def WorkerAdded(self):
         # connection = pyodbc.connect(
         # )
-        server = 'SABIR\SQLEXPRESS'
+        server = 'LAPTOP-KJ0J50KI\SPARTA'
         database = 'NGOConnect'  # Name of your NGOConnect database
         use_windows_authentication = True 
         connection = pyodbc.connect(
@@ -371,7 +421,7 @@ class WorkerUpdate(QtWidgets.QMainWindow):
         # connection = pyodbc.connect(
         #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         # )
-        server = 'SABIR\SQLEXPRESS'
+        server = 'LAPTOP-KJ0J50KI\SPARTA'
         database = 'NGOConnect'  # Name of your NGOConnect database
         use_windows_authentication = True 
         connection = pyodbc.connect(

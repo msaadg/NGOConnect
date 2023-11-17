@@ -36,7 +36,7 @@
       <x>10</x>
       <y>50</y>
       <width>331</width>
-      <height>261</height>
+      <height>181</height>
      </rect>
     </property>
     <property name="title">
@@ -151,9 +151,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>320</y>
+      <y>350</y>
       <width>761</width>
-      <height>231</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="title">
@@ -204,7 +204,7 @@
        <x>10</x>
        <y>20</y>
        <width>581</width>
-       <height>192</height>
+       <height>171</height>
       </rect>
      </property>
      <column>
@@ -240,36 +240,12 @@
       <x>380</x>
       <y>50</y>
       <width>391</width>
-      <height>131</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="title">
      <string>Operating Areas:</string>
     </property>
-    <widget class="QTableWidget" name="tableWidget_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>221</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="rowCount">
-      <number>6</number>
-     </property>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <column>
-      <property name="text">
-       <string>Operating Areas</string>
-      </property>
-     </column>
-    </widget>
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
@@ -296,47 +272,33 @@
       <string>Delete Area</string>
      </property>
     </widget>
+    <widget class="QListView" name="listView">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>251</width>
+       <height>111</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>190</y>
+      <y>200</y>
       <width>391</width>
-      <height>131</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="title">
      <string>Operating Categories:</string>
     </property>
-    <widget class="QTableWidget" name="tableWidget_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>221</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="rowCount">
-      <number>6</number>
-     </property>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <column>
-      <property name="text">
-       <string>Categories</string>
-      </property>
-     </column>
-    </widget>
     <widget class="QPushButton" name="pushButton_6">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>270</x>
        <y>40</y>
        <width>111</width>
        <height>23</height>
@@ -349,14 +311,50 @@
     <widget class="QPushButton" name="pushButton_7">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>270</x>
        <y>80</y>
-       <width>121</width>
+       <width>111</width>
        <height>23</height>
       </rect>
      </property>
      <property name="text">
       <string>Delete Category</string>
+     </property>
+    </widget>
+    <widget class="QListView" name="listView_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>251</width>
+       <height>111</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>331</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Details Of All Workers </string>
+    </property>
+    <widget class="QPushButton" name="WorkerButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>261</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Workers</string>
      </property>
     </widget>
    </widget>
@@ -367,7 +365,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>

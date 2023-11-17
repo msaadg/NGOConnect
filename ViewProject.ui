@@ -191,40 +191,14 @@
     <widget class="QPushButton" name="addWorkerBtn">
      <property name="geometry">
       <rect>
-       <x>620</x>
-       <y>170</y>
-       <width>131</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Add Worker</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="removeWorkerBtn">
-     <property name="geometry">
-      <rect>
-       <x>620</x>
+       <x>580</x>
        <y>200</y>
        <width>131</width>
        <height>23</height>
       </rect>
      </property>
      <property name="text">
-      <string>Remove Worker</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="updateBtn">
-     <property name="geometry">
-      <rect>
-       <x>620</x>
-       <y>230</y>
-       <width>131</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Update</string>
+      <string>Add Worker</string>
      </property>
     </widget>
    </widget>
@@ -235,7 +209,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
