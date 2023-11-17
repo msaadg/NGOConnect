@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>520</width>
-    <height>395</height>
+    <height>295</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,6 +34,29 @@
      <string>To Sign Up As An NGO, Please Enter The Following Details:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="CreateNGOButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CREATE NGO</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>80</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -47,25 +70,45 @@
      <string>NGO Name:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLineEdit" name="lineEdit_4">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>150</x>
       <y>110</y>
-      <width>47</width>
-      <height>13</height>
+      <width>231</width>
+      <height>20</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>Email:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
       <x>20</x>
+      <y>110</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Address:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ngoSignUpPass">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
       <y>140</y>
-      <width>81</width>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>91</width>
       <height>16</height>
      </rect>
     </property>
@@ -73,70 +116,27 @@
      <string>Password:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLineEdit" name="ngoSignUpConfirmPass">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>170</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>170</y>
-      <width>111</width>
+      <width>121</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>Confirm Password:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>110</y>
-      <width>231</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>140</y>
-      <width>231</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>80</y>
-      <width>231</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>170</y>
-      <width>231</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="CreateNGOButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>210</y>
-      <width>111</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CREATE NGO</string>
     </property>
    </widget>
   </widget>

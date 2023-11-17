@@ -50,6 +50,10 @@ class ViewNgoSignUp(QtWidgets.QMainWindow):
         # self.setStyleSheet("background-color: yellow")
         self.CreateNGOButton.clicked.connect(self.NGOCreate)
 
+        # set Password and Confirm Password to hidden
+        self.ngoSignUpPass.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+        self.ngoSignUpConfirmPass.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+
     def NGOCreate(self):
         Dialog = QtWidgets.QMessageBox()
         Dialog.setWindowTitle("Confirmation Box")
