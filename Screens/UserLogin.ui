@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>NGOScreen</class>
- <widget class="QMainWindow" name="NGOScreen">
+ <class>UserScreen</class>
+ <widget class="QMainWindow" name="UserScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>442</width>
-    <height>343</height>
+    <width>451</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>NGO Login</string>
+   <string>User Login </string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
       <x>10</x>
-      <y>10</y>
+      <y>20</y>
       <width>451</width>
       <height>31</height>
      </rect>
@@ -44,27 +31,27 @@
      </font>
     </property>
     <property name="text">
-     <string>Enter The Following Details To Login As An NGO:</string>
+     <string>Enter The Following Details To Login As A User:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Email:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>User Name:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>80</y>
+      <y>100</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -73,33 +60,33 @@
      <string>Password:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ngoUsername">
+   <widget class="QLineEdit" name="userEmail">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>50</y>
+      <y>70</y>
       <width>271</width>
       <height>20</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ngoPassword">
+   <widget class="QLineEdit" name="userPassword">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>80</y>
+      <y>100</y>
       <width>271</width>
       <height>20</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="NGOEnterButton">
+   <widget class="QPushButton" name="userLoginBtn">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>110</y>
-      <width>75</width>
-      <height>23</height>
+      <y>150</y>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -112,8 +99,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>442</width>
-     <height>24</height>
+     <width>451</width>
+     <height>36</height>
     </rect>
    </property>
   </widget>

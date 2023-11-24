@@ -14,7 +14,7 @@
    <string>NGO Connect</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="ExitButton">
+   <widget class="QPushButton" name="exitBtn">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -94,7 +94,7 @@
       <string>FOR UNREGISTERED NGO:</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="NGOSignUpButton">
+    <widget class="QPushButton" name="ngoSignupBtn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -127,7 +127,7 @@
       <string>Already A Member?</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="NGOLoginButton">
+    <widget class="QPushButton" name="ngoLoginBtn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -192,7 +192,7 @@
       <string>Are You A New User?</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="UserSignUpButton">
+    <widget class="QPushButton" name="userSignupBtn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -225,7 +225,7 @@
       <string>Already A Member?</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="UserLoginButton">
+    <widget class="QPushButton" name="userLoginBtn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -253,7 +253,7 @@
      <x>0</x>
      <y>0</y>
      <width>789</width>
-     <height>18</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

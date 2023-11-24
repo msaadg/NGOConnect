@@ -34,20 +34,20 @@
      <string>To Sign Up As An NGO, Please Enter The Following Details:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="CreateNGOButton">
+   <widget class="QPushButton" name="ngoSignupBtn">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>240</y>
-      <width>111</width>
-      <height>23</height>
+      <width>121</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>CREATE NGO</string>
+     <string>Sign Up</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="ngoName">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -70,7 +70,7 @@
      <string>NGO Name:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="ngoAddress">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -93,7 +93,7 @@
      <string>Address:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ngoSignUpPass">
+   <widget class="QLineEdit" name="ngoEmail">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -116,7 +116,7 @@
      <string>Password:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ngoSignUpConfirmPass">
+   <widget class="QLineEdit" name="ngoPassword">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -144,7 +144,7 @@
      <rect>
       <x>20</x>
       <y>140</y>
-      <width>81</width>
+      <width>91</width>
       <height>16</height>
      </rect>
     </property>
@@ -152,7 +152,7 @@
      <string>Email Address: </string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ngoSignUpConfirmPass_2">
+   <widget class="QLineEdit" name="ngoConfirmPassword">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -169,7 +169,7 @@
      <x>0</x>
      <y>0</y>
      <width>520</width>
-     <height>18</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>
