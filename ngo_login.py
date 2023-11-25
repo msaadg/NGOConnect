@@ -17,55 +17,55 @@ class NGOLogin(QtWidgets.QMainWindow):
 
 
     def ShowNGO(self):
-        # ngoEmail = self.ngoEmail.text()
-        # ngoPassword = self.ngoPassword.text()
+        ngoEmail = self.ngoEmail.text()
+        ngoPassword = self.ngoPassword.text()
 
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
+
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect database
+        # use_windows_authentication = True 
         # connection = pyodbc.connect(
         #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         # )
 
-        # # server = 'SABIR\SQLEXPRESS'
-        # # database = 'NGOConnect'  # Name of your NGOConnect database
-        # # use_windows_authentication = True 
-        # # connection = pyodbc.connect(
-        # #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        # # )
+        cursor = connection.cursor()
+        # get all emails
+        cursor.execute("SELECT ngoEmail FROM NGO")
+        ngoEmails = [x[0] for  x in cursor.fetchall()]
 
-        # cursor = connection.cursor()
-        # # get all emails
-        # cursor.execute("SELECT ngoEmail FROM NGO")
-        # ngoEmails = [x[0] for  x in cursor.fetchall()]
+        if ngoEmail == "" or ngoPassword == "":
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Please Fill All The Fields")
+            Dialog.exec()
 
-        # if ngoEmail == "" or ngoPassword == "":
-        #     Dialog = QtWidgets.QMessageBox()
-        #     Dialog.setWindowTitle("Error")
-        #     Dialog.setText("Please Fill All The Fields")
-        #     Dialog.exec()
-
-        # elif ngoEmail not in ngoEmails:
-        #     Dialog = QtWidgets.QMessageBox()
-        #     Dialog.setWindowTitle("Error")
-        #     Dialog.setText("Email Does Not Exist")
-        #     Dialog.exec()
+        elif ngoEmail not in ngoEmails:
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Email Does Not Exist")
+            Dialog.exec()
         
-        # elif ngoEmail in ngoEmails:
-        #     cursor.execute("SELECT ngoPassword FROM NGO WHERE ngoEmail = ?", ngoEmail)
-        #     ngoRealPassword = cursor.fetchall()[0][0]
-        #     if ngoPassword == ngoRealPassword:
-        #         # show NGO page and send ngoID to NGOPage
-        #         cursor.execute("SELECT ngoID FROM NGO WHERE ngoEmail = ?", ngoEmail)
-        #         ngoID = cursor.fetchall()[0][0]
-        #         self.ngo_page = NGOPage(ngoID)
-        #         self.ngo_page.show()
-        #         self.close()
-        #     else:
-        #         Dialog = QtWidgets.QMessageBox()
-        #         Dialog.setWindowTitle("Error")
-        #         Dialog.setText("Incorrect Password")
-        #         Dialog.exec()
+        elif ngoEmail in ngoEmails:
+            cursor.execute("SELECT ngoPassword FROM NGO WHERE ngoEmail = ?", ngoEmail)
+            ngoRealPassword = cursor.fetchall()[0][0]
+            if ngoPassword == ngoRealPassword:
+                # show NGO page and send ngoID to NGOPage
+                cursor.execute("SELECT ngoID FROM NGO WHERE ngoEmail = ?", ngoEmail)
+                ngoID = cursor.fetchall()[0][0]
+                self.ngo_page = NGOPage(ngoID)
+                self.ngo_page.show()
+                self.close()
+            else:
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("Incorrect Password")
+                Dialog.exec()
 
-        # connection.close()
+        connection.close()
 
-        self.ngo_page = NGOPage(1)
-        self.ngo_page.show()
-        self.close()
+        # self.ngo_page = NGOPage(1)
+        # self.ngo_page.show()
+        # self.close()
