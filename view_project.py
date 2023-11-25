@@ -8,30 +8,34 @@ from worker_to_project import WorkerToProject
 from update_worker import UpdateWorker
 
 class ViewProject(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, projectID):
         # Call the inherited classes __init__ method
         super().__init__()
 
         # Load the .ui file
         uic.loadUi('Screens/ViewProject.ui', self)
+        self.setWindowTitle("Project Details")
 
-        self.loadProjectData()
-        # self.refreshWorkerTable()
-        self.addWorkerBtn.clicked.connect(self.addWorker)
-        # self.removeWorkerBtn.clicked.connect(self.removeWorker)
-        # self.updateBtn.clicked.connect(self.updateWorker)
-
-        # self.timer = QTimer(self)
-        # self.timer.timeout.connect(self.refreshWorkerTable)
-        # self.timer.start(5000)
-
-    def refreshWorkerTable(self):
-        self.workerDetails.clearContents()
-        self.workerDetails.setRowCount(0)
-        self.populateWorkerTable()
+        self.ngoName.setDisabled(True)
+        self.projectName.setDisabled(True)
+        self.projectScale.setDisabled(True)
+        self.projectStartDate.setDisabled(True)
+        self.projectEndDate.setDisabled(True)
+        self.projectSaveBtn.setDisabled(True)
 
 
-    def populateWorkerTable(self):
+        self.addWorkerBtn.clicked.connect(lambda: self.addWorker(projectID))
+        self.removeWorkerBtn.clicked.connect(lambda: self.removeWorker(projectID))
+        self.projectEditBtn.clicked.connect(self.editProject)
+        self.projectSaveBtn.clicked.connect(lambda: self.saveProject(projectID))
+        self.endProjectBtn.clicked.connect(lambda: self.endProject(projectID))
+
+        self.loadProjectData(projectID)
+
+    def refreshData(self, projectID):
+        self.loadProjectData(projectID)
+
+    def loadProjectData(self, projectID):
         connection = pyodbc.connect(
                 'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         )
@@ -45,92 +49,66 @@ class ViewProject(QtWidgets.QMainWindow):
 
         cursor = connection.cursor()
 
-        # TODO: Write SQL query to fetch Workers Data
-        select_query = "SELECT workerID, workerEmail, workerName, gender, age from Worker where workerID in (select workerID from WorkerProject where projectID = 1)"
-        cursor.execute(select_query)
+        select_query = """
+            SELECT n.name, p.projectName, p.scale, p.startDate, p.endDate
+            FROM NGO n, Project p
+            WHERE n.ngoID = p.ngoID and p.projectID = ?    
+        """
+        cursor.execute(select_query, projectID)
+        projectDetails = cursor.fetchall()[0]
 
-        # Fetch all rows and populate the table
+        self.ngoName.setText(projectDetails[0])
+        self.projectName.setText(projectDetails[1])
+        self.projectScale.setText(str(projectDetails[2]))
+        self.projectStartDate.setDate(projectDetails[3])
+        if projectDetails[4] == None:
+            self.projectEndDate.setText(" -")
+        else:
+            #convert datetime to sting
+            self.projectEndDate.setText(projectDetails[4].strftime("%Y-%m-%d"))
+            self.endProjectBtn.setDisabled(True)
+
+
+        self.projectName.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+
+        select_query = """
+            SELECT w.workerEmail, w.workerName, w.gender, w.age
+            FROM Worker w, WorkerProject wp
+            WHERE w.workerID = wp.workerID and wp.projectID = ?
+        """
+
+        header = self.workerDetails.horizontalHeader()
+        for i in range(4):
+            header.setSectionResizeMode(i, QHeaderView.ResizeMode.Stretch)
+        self.workerDetails.clearContents()
+        self.workerDetails.setRowCount(0)
+        
+        cursor.execute(select_query, projectID)
         for row_index, row_data in enumerate(cursor.fetchall()):
             self.workerDetails.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
                 item = QTableWidgetItem(str(cell_data))
                 self.workerDetails.setItem(row_index, col_index, item)
+                self.workerDetails.item(row_index, col_index).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
         # Close the database connection
         connection.close()
 
-        # Adjust content display
-        header = self.workerDetails.horizontalHeader()
-        header.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
-
-    def loadProjectData(self):
-        self.setWindowTitle("Project")
-
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # use_windows_authentication = True 
-        # connection = pyodbc.connect(
-        #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        # )
-
-        cursor = connection.cursor()
-
-        select_query = "SELECT projectID, name, projectName, scale, startDate from Project p, NGO n where p.ngoID = n.ngoID and projectID = 1"
-        cursor.execute(select_query)
-
-        # fill line edits
-        for row in cursor:
-            self.projectID.setText(str(row[0]))
-            self.ngoName.setText(str(row[1]))
-            self.projectName.setText(str(row[2]))
-            self.scale.setText(str(row[3]))
-            self.startDate.setDate(QDate.fromString(str(row[4]), "yyyy-MM-dd"))
-
-        # set projectName to centre of line edit
-        self.projectName.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-
-        # disable editing of projectID, ngoID, projectName, scale, startDate
-        self.projectID.setDisabled(True)
-        self.ngoName.setDisabled(True)
-        self.projectName.setDisabled(True)
-        self.scale.setDisabled(True)
-        self.startDate.setDisabled(True)
-
-        # Close the database connection
-        connection.close()
-
-    def addWorker(self):
-        self.add_worker = WorkerToProject()
+    def addWorker(self, projectID):
+        self.add_worker = WorkerToProject(projectID)
         self.add_worker.show()
-        # self.add_worker.addWorkerDoneBtn.clicked.connect(self.refreshWorkerTable)
+        self.add_worker.addWorkerDoneBtn.clicked.connect(lambda: self.refreshData(projectID))
 
-
-    def updateWorker(self):
-        workerDetails = []
-        for i in range(0, 5):
-            workerDetails.append(self.workerDetails.item(self.workerDetails.currentRow(), i).text())
-
-        self.update_worker = UpdateWorker(workerDetails)
-        self.update_worker.show()
-        self.update_worker.updateWorkerDoneBtn.clicked.connect(self.refreshWorkerTable)
-
-    def removeWorker(self):
+    def removeWorker(self, projectID):
         Dialog = QtWidgets.QMessageBox()
         Dialog.setWindowTitle("Confirmation Box")
         Dialog.setText("Are You Sure You Want To Remove This Worker?")
         Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         Option = Dialog.exec()
-        x = 0
         if Option == QtWidgets.QMessageBox.StandardButton.Yes:
             # do the delete procedure of project
+            workerEmail = self.workerDetails.item(self.workerDetails.currentRow(), 0).text()
             connection = pyodbc.connect(
                     'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
             )
@@ -143,20 +121,88 @@ class ViewProject(QtWidgets.QMainWindow):
             # )
             
             cursor = connection.cursor()
-            delete_query1 = """
+            cursor.execute("SELECT workerID FROM Worker WHERE workerEmail = ?", workerEmail)
+            workerID = cursor.fetchall()[0][0]
+
+            delete_query = """
                 DELETE FROM WorkerProject
                 WHERE workerID = ? and projectID = ?
             """
-
-            delete_query2 = """
-                DELETE FROM Worker
-                WHERE workerID = ? and ngoID = ?
-            """
-
-            cursor.execute(delete_query1, (int(self.workerDetails.item(self.workerDetails.currentRow(), 0).text()), 1))
-            cursor.execute(delete_query2, (int(self.workerDetails.item(self.workerDetails.currentRow(), 0).text()), 1))
-            
+            cursor.execute(delete_query, workerID, projectID)
             connection.commit()
             connection.close()
-            self.refreshWorkerTable()
+            self.refreshData(projectID)
 
+    def editProject(self):
+        self.projectName.setDisabled(False)
+        self.projectScale.setDisabled(False)
+        self.projectStartDate.setDisabled(False)
+
+        self.projectSaveBtn.setDisabled(False)
+        self.projectEditBtn.setDisabled(True)
+        self.endProjectBtn.setDisabled(True)
+
+    def saveProject(self, projectID):
+        Dialog = QtWidgets.QMessageBox()
+        Dialog.setWindowTitle("Confirmation Box")
+        Dialog.setText("Are You Sure You Want To Save The Changes?")
+        Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        Option = Dialog.exec()
+        if Option == QtWidgets.QMessageBox.StandardButton.Yes:
+            projectName = self.projectName.text()
+            projectScale = self.projectScale.text()
+            projectStartDate = self.projectStartDate.date().toString("yyyy-MM-dd")
+
+            connection = pyodbc.connect(
+                    'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # use_windows_authentication = True 
+            # connection = pyodbc.connect(
+            #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            # )
+            
+            cursor = connection.cursor()
+            cursor.execute("UPDATE Project SET projectName = ?, scale = ?, startDate = ? WHERE projectID = ?", projectName, projectScale, projectStartDate, projectID)
+            connection.commit()
+            connection.close()
+
+            self.projectName.setDisabled(True)
+            self.projectScale.setDisabled(True)
+            self.projectStartDate.setDisabled(True)
+
+            self.projectSaveBtn.setDisabled(True)
+            self.projectEditBtn.setDisabled(False)
+            if self.projectEndDate.text() == " -":
+                self.endProjectBtn.setDisabled(False)
+            else:
+                self.endProjectBtn.setDisabled(True)
+
+    def endProject(self, projectID):
+        Dialog = QtWidgets.QMessageBox()
+        Dialog.setWindowTitle("Confirmation Box")
+        Dialog.setText("Are You Sure You Want To End This Project?")
+        Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        Option = Dialog.exec()
+        if Option == QtWidgets.QMessageBox.StandardButton.Yes:
+            connection = pyodbc.connect(
+                    'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # use_windows_authentication = True 
+            # connection = pyodbc.connect(
+            #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            # )
+            
+            cursor = connection.cursor()
+            cursor.execute("UPDATE Project SET endDate = ? WHERE projectID = ?", QDate.currentDate().toString("yyyy-MM-dd"), projectID)
+            connection.commit()
+            connection.close()
+
+            self.projectEndDate.setText(QDate.currentDate().toString("yyyy-MM-dd"))
+
+            self.endProjectBtn.setDisabled(True)

@@ -3,17 +3,27 @@ from PyQt6.QtCore import QDate, QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
+import re
 
 class AddWorker(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, ngoID):
         super().__init__()
         uic.loadUi('Screens/AddWorker.ui',self)
-        self.addWorkerDoneBtn.clicked.connect(self.WorkerAdded)
+
+
+        self.addWorkerDoneBtn.clicked.connect(lambda: self.WorkerAdded(ngoID))
         self.workerPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
 
-    def WorkerAdded(self):
+    def WorkerAdded(self, ngoID):
+        workerName = self.workerName.text()
+        workerEmail = self.workerEmail.text()
+        workerPassword = self.workerPassword.text()
+        workerGender = self.workerGender.text()
+        workerAge = self.workerAge.text()
+        regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
+
         connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         )
         
         # server = 'SABIR\SQLEXPRESS'
@@ -23,31 +33,40 @@ class AddWorker(QtWidgets.QMainWindow):
         # )
 
         cursor = connection.cursor()
-        insert_query1 = """
-            INSERT INTO Worker
-            ([ngoID], [workerEmail], [workerName], [workerPassword], [gender], [age])
-            VALUES (?, ?, ?, ?, ?, ?)
-        """
 
-        insert_query2 = """
-            INSERT INTO WorkerProject
-            ([workerID], [projectID], [workerStatus])
-            VALUES (?, ?, ?)
-        """
+        #check whether workerEmail already exists
+        cursor.execute("SELECT workerEmail FROM Worker")
+        workerEmails = [x[0] for x in cursor.fetchall()]
 
-        cursor.execute(insert_query1, (1, self.workerEmail.text(), self.workerName.text(), self.workerPassword.text(), 
-                                      self.gender.text(), int(self.age.text())))
+        if workerEmail in workerEmails:
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Email Already Exists \n Try Another Email")
+            Dialog.exec()
+            return
         
-        cursor.execute(insert_query2, (cursor.execute("SELECT IDENT_CURRENT('Worker')").fetchone()[0], 1, "Active"))
-        
-        connection.commit()
-        connection.close()
-
+        elif not re.search(regex, workerEmail):
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Invalid Email")
+            Option = Dialog.exec()
+            return
 
         Dialog = QtWidgets.QMessageBox()
         Dialog.setWindowTitle("Confirmation Box")
         Dialog.setText("Worker Is Successfully Added")
         Option = Dialog.exec()
         if Option == QtWidgets.QMessageBox.StandardButton.Ok:
+            insert_query = """
+                INSERT INTO Worker (ngoID, workerEmail, workerName, workerPassword, gender, age)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """
+
+            cursor.execute(insert_query, (ngoID, workerEmail, workerName, workerPassword, workerGender, workerAge))
+            connection.commit()
+
+
+            connection.commit()
+            connection.close()
             self.close()
 

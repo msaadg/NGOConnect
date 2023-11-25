@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>NGO Connect</string>
+   <string>NGOConnect</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="exitBtn">

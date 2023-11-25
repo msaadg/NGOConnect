@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>444</width>
-    <height>276</height>
+    <height>286</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -79,7 +79,7 @@
       <x>10</x>
       <y>150</y>
       <width>47</width>
-      <height>13</height>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
@@ -106,7 +106,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="gender">
+   <widget class="QLineEdit" name="workerGender">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -116,7 +116,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="age">
+   <widget class="QLineEdit" name="workerAge">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -129,10 +129,10 @@
    <widget class="QPushButton" name="updateWorkerDoneBtn">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>190</y>
-      <width>75</width>
-      <height>23</height>
+      <x>280</x>
+      <y>180</y>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -146,7 +146,7 @@
      <x>0</x>
      <y>0</y>
      <width>444</width>
-     <height>24</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

@@ -15,10 +15,12 @@ class NGOSignup(QtWidgets.QMainWindow):
         # set Password and Confirm Password to hidden
         self.ngoPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.ngoConfirmPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+        self.ngoRegDate.setDate(QDate.currentDate())
 
     def NGOCreate(self):
         ngoName = self.ngoName.text()
         ngoAddress = self.ngoAddress.text()
+        ngoRegDate = self.ngoRegDate.date().toString("yyyy-MM-dd")
         ngoEmail = self.ngoEmail.text()
         ngoPassword = self.ngoPassword.text()
         ngoConfirmPassword = self.ngoConfirmPassword.text()
@@ -39,7 +41,7 @@ class NGOSignup(QtWidgets.QMainWindow):
         cursor.execute("SELECT ngoEmail FROM NGO")
         ngoEmails = [x[0] for x in cursor.fetchall()]
 
-        if ngoName == "" or ngoAddress == "" or ngoEmail == "" or ngoPassword == "" or ngoConfirmPassword == "":
+        if ngoName == "" or ngoAddress == "" or ngoRegDate == "" or ngoEmail == "" or ngoPassword == "" or ngoConfirmPassword == "":
             Dialog = QtWidgets.QMessageBox()
             Dialog.setWindowTitle("Error")
             Dialog.setText("Please Fill All The Fields")
@@ -81,7 +83,7 @@ class NGOSignup(QtWidgets.QMainWindow):
                 INSERT INTO NGO(name, regDate, address, ngoEmail, ngoPassword)
                 VALUES(?, ?, ?, ?, ?)
             """
-            cursor.execute(insert_query, (ngoName, QDate.currentDate().toString("yyyy-MM-dd"), ngoAddress, ngoEmail, ngoPassword))
+            cursor.execute(insert_query, (ngoName, ngoRegDate, ngoAddress, ngoEmail, ngoPassword))
             connection.commit()        
 
             Dialog = QtWidgets.QMessageBox()

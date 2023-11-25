@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>568</width>
-    <height>430</height>
+    <width>770</width>
+    <height>322</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="workerDetails_2">
+   <widget class="QTableWidget" name="workerDetails">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>391</width>
+      <width>591</width>
       <height>192</height>
      </rect>
     </property>
@@ -32,11 +32,6 @@
     <row/>
     <row/>
     <row/>
-    <column>
-     <property name="text">
-      <string>ID</string>
-     </property>
-    </column>
     <column>
      <property name="text">
       <string>Email</string>
@@ -58,39 +53,39 @@
      </property>
     </column>
    </widget>
-   <widget class="QPushButton" name="AddWorkerButton">
+   <widget class="QPushButton" name="addWorkerBtn">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>160</y>
+      <x>620</x>
+      <y>132</y>
       <width>131</width>
-      <height>23</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Add Worker</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="DeleteWorkerButton">
+   <widget class="QPushButton" name="removeWorkerBtn">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>190</y>
+      <x>620</x>
+      <y>170</y>
       <width>131</width>
-      <height>23</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Remove Worker</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="UpdateWorkerButton">
+   <widget class="QPushButton" name="updateWorkerBtn">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>220</y>
+      <x>620</x>
+      <y>210</y>
       <width>131</width>
-      <height>23</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -102,7 +97,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>251</width>
+      <width>281</width>
       <height>16</height>
      </rect>
     </property>
@@ -110,16 +105,6 @@
      <string>Details Of All Workers Related To Your NGO:</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>568</width>
-     <height>18</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

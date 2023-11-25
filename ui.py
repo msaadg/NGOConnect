@@ -35,6 +35,7 @@ class UI(QtWidgets.QMainWindow):
 
         self.ngologin = NGOLogin()
         self.ngologin.show()
+        self.close()
 
     def UserSignup(self):
 
