@@ -12,6 +12,7 @@ class NewProject(QtWidgets.QMainWindow):
         self.projectStartDate.setDate(QDate.currentDate())
 
         self.projectDoneBtn.clicked.connect(lambda: self.ProjectAdded(ngoID))
+        self.projectCancelBtn.clicked.connect(lambda: self.close())
     
     def ProjectAdded(self, ngoID):
         # get projectName, prjectScale, projectStartDate, projectEndDate

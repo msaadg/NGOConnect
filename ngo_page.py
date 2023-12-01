@@ -107,7 +107,21 @@ class NGOPage(QtWidgets.QMainWindow):
         self.ngoRegDate.setDisabled(False)
 
         self.ngoSaveBtn.setDisabled(False)
-        self.ngoEditBtn.setDisabled(True)
+
+        #change edit button to cancel button
+        self.ngoEditBtn.setText("Cancel")
+        self.ngoEditBtn.clicked.connect(self.CancelEdit)
+
+    def CancelEdit(self):
+        self.ngoName.setDisabled(True)
+        self.ngoEmail.setDisabled(True)
+        self.ngoAddress.setDisabled(True)
+        self.ngoRegDate.setDisabled(True)
+
+        self.ngoSaveBtn.setDisabled(True)
+
+        self.ngoEditBtn.setText("Edit")
+        self.ngoEditBtn.clicked.connect(self.EditNGO)
 
 
     def SaveNGO(self, ngoID):
@@ -141,6 +155,8 @@ class NGOPage(QtWidgets.QMainWindow):
             self.ngoRegDate.setDisabled(True)
             self.ngoSaveBtn.setDisabled(True)
 
+            #change text from cancel to edit
+            self.ngoEditBtn.setText("Edit")
             self.ngoEditBtn.setDisabled(False)
 
     def Workers(self, ngoID):

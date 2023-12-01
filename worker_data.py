@@ -18,13 +18,44 @@ class WorkerData(QtWidgets.QMainWindow):
         self.addWorkerBtn.clicked.connect(lambda: self.AddWorker(ngoID))
         self.removeWorkerBtn.clicked.connect(lambda: self.removeWorker(ngoID))
         self.updateWorkerBtn.clicked.connect(lambda: self.UpdateWorker(ngoID))
+        self.searchWorkerBtn.clicked.connect(lambda: self.searchWorker(ngoID))
 
-        self.loadData(ngoID)
+        self.loadSearchData(ngoID)
+        self.loadWorkersData(ngoID)
 
     def refreshData(self, ngoID):
-        self.loadData(ngoID)
+        self.loadWorkersData(ngoID)
 
-    def loadData(self, ngoID):
+    def loadSearchData(self, ngoID):
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
+
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect database
+        # use_windows_authentication = True 
+        # connection = pyodbc.connect(
+        #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        # )
+
+        cursor = connection.cursor()
+        #load all workers email in emailCombobox
+        cursor.execute("SELECT workerEmail FROM Worker WHERE ngoID = ?", ngoID)
+        self.emailCombobox.clear()
+        self.emailCombobox.addItem("")
+        for row in cursor.fetchall():
+            self.emailCombobox.addItem(row[0])
+
+        #load all workers name in nameCombobox
+        cursor.execute("SELECT workerName FROM Worker WHERE ngoID = ?", ngoID)
+        self.nameCombobox.clear()
+        self.nameCombobox.addItem("")
+        for row in cursor.fetchall():
+            self.nameCombobox.addItem(row[0])
+
+        connection.close()
+
+    def loadWorkersData(self, ngoID):
         connection = pyodbc.connect(
                 'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         )
@@ -53,7 +84,58 @@ class WorkerData(QtWidgets.QMainWindow):
                 self.workerDetails.item(row_index, col_index).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
         connection.close()
-    
+
+
+    def searchWorker(self, ngoID):
+        self.loadWorkersData(ngoID)
+
+        # Get the selected email
+        selected_email = self.emailCombobox.currentText()
+
+        if selected_email and selected_email != "":  # Assuming "" or some default value for no selection
+            for row in range(self.workerDetails.rowCount() - 1, -1, -1):
+                if self.workerDetails.item(row, 0).text() != selected_email:
+                    self.workerDetails.removeRow(row)
+
+        # Get the selected name
+        selected_name = self.nameCombobox.currentText()
+
+        if selected_name and selected_name != "":  # Assuming "" or some default value for no selection
+            for row in range(self.workerDetails.rowCount() - 1, -1, -1):
+                if self.workerDetails.item(row, 1).text() != selected_name:
+                    self.workerDetails.removeRow(row)
+
+        # Get the selected gender
+        selected_gender = self.genderCombobox.currentText()
+
+        if selected_gender and selected_gender != "":  # Assuming "" or some default value for no selection
+            for row in range(self.workerDetails.rowCount() - 1, -1, -1):
+                if self.workerDetails.item(row, 2).text() != selected_gender:
+                    self.workerDetails.removeRow(row)
+
+        # Get the selected age
+        selected_age = self.ageCombobox.currentText()
+        # < 20
+        # < 30
+        # < 40
+        # < 50
+
+        if selected_age and selected_age != "":  # Assuming "" or some default value for no selection
+            for row in range(self.workerDetails.rowCount() - 1, -1, -1):
+                if selected_age == "< 50":
+                    if int(self.workerDetails.item(row, 3).text()) >= 50:
+                        self.workerDetails.removeRow(row)
+                elif selected_age == "< 40":
+                    if int(self.workerDetails.item(row, 3).text()) >= 40:
+                        self.workerDetails.removeRow(row)
+                elif selected_age == "< 30":
+                    if int(self.workerDetails.item(row, 3).text()) >= 30:
+                        self.workerDetails.removeRow(row)
+                elif selected_age == "< 20":
+                    if int(self.workerDetails.item(row, 3).text()) >= 20:
+                        self.workerDetails.removeRow(row)
+
+                
 
     def AddWorker(self, ngoID):
         self.new_worker = AddWorker(ngoID)

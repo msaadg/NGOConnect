@@ -25,6 +25,8 @@ class NewCategory(QtWidgets.QMainWindow):
         self.categories.lineEdit().textEdited.connect(self.proxyModel.setFilterFixedString)
 
         self.categoryDoneBtn.clicked.connect(lambda: self.AddCategory(ngoID))
+        self.categoryCancelBtn.clicked.connect(lambda: self.close())
+        
         self.loadCategories(ngoID)
 
         self.categories.setCurrentIndex(-1)

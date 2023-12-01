@@ -17,9 +17,9 @@
    <widget class="QPushButton" name="areaDoneBtn">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>320</x>
       <y>110</y>
-      <width>131</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -48,6 +48,19 @@
     </property>
     <property name="text">
      <string>Select An Area To Add To Your NGO:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="areaCancelBtn">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>110</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
     </property>
    </widget>
   </widget>

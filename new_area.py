@@ -27,6 +27,8 @@ class NewArea(QtWidgets.QMainWindow):
         self.areas.lineEdit().textEdited.connect(self.proxyModel.setFilterFixedString)
 
         self.areaDoneBtn.clicked.connect(lambda: self.AddArea(ngoID))
+        self.areaCancelBtn.clicked.connect(lambda: self.close())
+
         self.loadAreas(ngoID)
 
         self.areas.setCurrentIndex(-1)

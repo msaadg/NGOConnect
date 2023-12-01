@@ -12,6 +12,7 @@ class AddWorker(QtWidgets.QMainWindow):
 
 
         self.addWorkerDoneBtn.clicked.connect(lambda: self.WorkerAdded(ngoID))
+        self.addWorkerCancelBtn.clicked.connect(lambda: self.close())
         self.workerPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
 
     def WorkerAdded(self, ngoID):

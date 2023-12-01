@@ -27,6 +27,7 @@ class UpdateWorker(QtWidgets.QMainWindow):
 
         self.loadData(workerID)
         self.updateWorkerDoneBtn.clicked.connect(lambda: self.WorkerUpdated(workerID))
+        self.updateWorkerCancelBtn.clicked.connect(lambda: self.close())
 
     def loadData(self, workerID):
         connection = pyodbc.connect(
