@@ -1,4 +1,3 @@
--- Create NGO table
 CREATE TABLE NGO (
     ngoID INT PRIMARY KEY IDENTITY(1,1),
     name VARCHAR(255),
@@ -8,7 +7,6 @@ CREATE TABLE NGO (
     ngoPassword VARCHAR(255)
 );
 
--- Create Project table
 CREATE TABLE Project (
     projectID INT PRIMARY KEY IDENTITY(1,1),
     ngoID INT,
@@ -19,26 +17,6 @@ CREATE TABLE Project (
     FOREIGN KEY (ngoID) REFERENCES NGO (ngoID)
 );
 
--- Create Area table
-CREATE TABLE Area (
-    areaCode INT PRIMARY KEY IDENTITY(1,1),
-    areaName VARCHAR(255),
-    city VARCHAR(255),
-    country VARCHAR(255)
-);
-
--- Create Worker table
-CREATE TABLE Worker (
-    workerID INT PRIMARY KEY IDENTITY(1,1),
-    ngoID INT,
-    workerEmail VARCHAR(255),
-    workerName VARCHAR(255),
-    workerPassword VARCHAR(255),
-    gender VARCHAR(255),
-    age INT
-);
-
--- Create Users table
 CREATE TABLE Users (
     userID INT PRIMARY KEY IDENTITY(1,1),
     userEmail VARCHAR(255),
@@ -46,30 +24,20 @@ CREATE TABLE Users (
     userPassword VARCHAR(255)
 );
 
--- Create Category table
 CREATE TABLE Category (
     categoryName VARCHAR(255) PRIMARY KEY
 );
 
--- Create SavedProject table
-CREATE TABLE SavedProject (
+CREATE TABLE Donation (
     projectID INT,
     userID INT,
-    PRIMARY KEY (projectID, userID),
+    donationDateTime DATETIME,
+    amount INT,
+    PRIMARY KEY (projectID, userID, donationDateTime),
     FOREIGN KEY (projectID) REFERENCES Project (projectID),
     FOREIGN KEY (userID) REFERENCES Users (userID)
 );
 
--- Create DonatedProject table
-CREATE TABLE DonatedProject (
-    projectID INT,
-    userID INT,
-    PRIMARY KEY (projectID, userID),
-    FOREIGN KEY (projectID) REFERENCES Project (projectID),
-    FOREIGN KEY (userID) REFERENCES Users (userID)
-);
-
--- Create OperatingCategories table
 CREATE TABLE OperatingCategories (
     ngoID INT,
     categoryName VARCHAR(255),
@@ -78,7 +46,13 @@ CREATE TABLE OperatingCategories (
     FOREIGN KEY (categoryName) REFERENCES Category (categoryName)
 );
 
--- Create OperatingAreas table
+CREATE TABLE Area (
+    areaCode INT PRIMARY KEY IDENTITY(1,1),
+    areaName VARCHAR(255),
+    city VARCHAR(255),
+    country VARCHAR(255)
+);
+
 CREATE TABLE OperatingAreas (
     areaCode INT,
     ngoID INT,
@@ -87,7 +61,18 @@ CREATE TABLE OperatingAreas (
     FOREIGN KEY (ngoID) REFERENCES NGO (ngoID)
 );
 
--- Create WorkerProject table
+CREATE TABLE Worker (
+    workerID INT PRIMARY KEY IDENTITY(1,1),
+    ngoID INT,
+    workerEmail VARCHAR(255),
+    workerName VARCHAR(255),
+    workerPassword VARCHAR(255),
+    gender VARCHAR(255),
+    age INT,
+    dateAdded DATE,
+    FOREIGN KEY (ngoID) REFERENCES NGO (ngoID)
+);
+
 CREATE TABLE WorkerProject (
     workerID INT,
     projectID INT,

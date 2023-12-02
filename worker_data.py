@@ -15,6 +15,15 @@ class WorkerData(QtWidgets.QMainWindow):
         #set windows title
         self.setWindowTitle("Worker Data")
 
+        #disable from and to date
+        self.fromDateEdit.setEnabled(False)
+        self.toDateEdit.setEnabled(False)
+
+        # if fromCheckbox is checked enable fromDateEdit
+        self.fromCheckbox.stateChanged.connect(lambda: self.fromDateEdit.setEnabled(self.fromCheckbox.isChecked()))
+        # if toCheckbox is checked enable toDateEdit
+        self.toCheckbox.stateChanged.connect(lambda: self.toDateEdit.setEnabled(self.toCheckbox.isChecked()))
+
         self.addWorkerBtn.clicked.connect(lambda: self.AddWorker(ngoID))
         self.removeWorkerBtn.clicked.connect(lambda: self.removeWorker(ngoID))
         self.updateWorkerBtn.clicked.connect(lambda: self.UpdateWorker(ngoID))
@@ -70,12 +79,12 @@ class WorkerData(QtWidgets.QMainWindow):
         cursor = connection.cursor()
 
         header = self.workerDetails.horizontalHeader()
-        for i in range(4):
+        for i in range(5):
             header.setSectionResizeMode(i, QHeaderView.ResizeMode.Stretch)
         self.workerDetails.clearContents()
         self.workerDetails.setRowCount(0)
 
-        cursor.execute("SELECT workerEmail, workerName, gender, age FROM Worker WHERE ngoID = ?", ngoID)
+        cursor.execute("SELECT workerEmail, workerName, gender, age, dateAdded FROM Worker WHERE ngoID = ?", ngoID)
         for row_index, row_data in enumerate(cursor.fetchall()):
             self.workerDetails.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
@@ -135,6 +144,87 @@ class WorkerData(QtWidgets.QMainWindow):
                     if int(self.workerDetails.item(row, 3).text()) >= 20:
                         self.workerDetails.removeRow(row)
 
+        #handle all errors
+        if self.fromCheckbox.isChecked():
+            selected_from_date = self.fromDateEdit.date().toString("yyyy-MM-dd")
+        else:
+            selected_from_date = ""
+
+        if self.toCheckbox.isChecked():
+            selected_to_date = self.toDateEdit.date().toString("yyyy-MM-dd")
+        else:
+            selected_to_date = ""
+            
+        if selected_from_date != "" and selected_to_date != "":
+            if selected_from_date > selected_to_date:
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("From Date Must Be Less Than To Date")
+                Dialog.exec()
+                return
+
+            elif selected_to_date < selected_from_date:
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("To Date Must Be Greater Than From Date")
+                Dialog.exec()
+                return
+            
+            elif selected_from_date <= "2000-01-01":
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("From Date Must Be Greater Than 2000-01-01")
+                Dialog.exec()
+                return
+            
+            elif selected_to_date >= QDate.currentDate().toString("yyyy-MM-dd"):
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("To Date Must Be Less Than Current Date")
+                Dialog.exec()
+                return
+            
+            for row in range(self.workerDetails.rowCount() - 1, -1, -1):
+                if self.workerDetails.item(row, 4).text() < selected_from_date or self.workerDetails.item(row, 4).text() > selected_to_date:
+                    self.workerDetails.removeRow(row)
+        
+        elif selected_from_date != "" and selected_to_date == "":
+            if selected_from_date >= QDate.currentDate().toString("yyyy-MM-dd"):
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("From Date Must Be Less Than Current Date")
+                Dialog.exec()
+                return
+            
+            elif selected_from_date <= "2000-01-01":
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("From Date Must Be Greater Than 2000-01-01")
+                Dialog.exec()
+                return
+            
+            for row in range(self.workerDetails.rowCount() - 1, -1, -1):
+                if self.workerDetails.item(row, 4).text() < selected_from_date:
+                    self.workerDetails.removeRow(row)
+            
+        elif selected_from_date == "" and selected_to_date != "":
+            if selected_to_date >= QDate.currentDate().toString("yyyy-MM-dd"):
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("To Date Must Be Less Than Current Date")
+                Dialog.exec()
+                return
+            
+            elif selected_to_date <= "2000-01-01":
+                Dialog = QtWidgets.QMessageBox()
+                Dialog.setWindowTitle("Error")
+                Dialog.setText("To Date Must Be Greater Than 2000-01-01")
+                Dialog.exec()
+                return
+
+            for row in range(self.workerDetails.rowCount() - 1, -1, -1):
+                if self.workerDetails.item(row, 4).text() > selected_to_date:
+                    self.workerDetails.removeRow(row)
                 
 
     def AddWorker(self, ngoID):
