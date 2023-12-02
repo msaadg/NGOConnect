@@ -19,8 +19,16 @@ class AddWorker(QtWidgets.QMainWindow):
         workerName = self.workerName.text()
         workerEmail = self.workerEmail.text()
         workerPassword = self.workerPassword.text()
-        workerGender = self.workerGender.text()
+        workerGender = self.workerGender.currentText()
         workerAge = self.workerAge.text()
+
+        if workerName == "" or workerEmail == "" or workerPassword == "" or workerGender == "" or workerAge == "":
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Please Fill All The Fields")
+            Dialog.exec()
+            return
+
         regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
 
         connection = pyodbc.connect(
@@ -59,11 +67,11 @@ class AddWorker(QtWidgets.QMainWindow):
         Option = Dialog.exec()
         if Option == QtWidgets.QMessageBox.StandardButton.Ok:
             insert_query = """
-                INSERT INTO Worker (ngoID, workerEmail, workerName, workerPassword, gender, age)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO Worker (ngoID, workerEmail, workerName, workerPassword, gender, age, dateAdded)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
             """
 
-            cursor.execute(insert_query, (ngoID, workerEmail, workerName, workerPassword, workerGender, workerAge))
+            cursor.execute(insert_query, (ngoID, workerEmail, workerName, workerPassword, workerGender, workerAge, QDate.currentDate().toString(QtCore.Qt.DateFormat.ISODate)))
             connection.commit()
 
 

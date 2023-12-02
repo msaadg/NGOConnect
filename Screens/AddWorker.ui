@@ -129,16 +129,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="workerGender">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>150</y>
-      <width>261</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="workerAge">
     <property name="geometry">
      <rect>
@@ -174,6 +164,31 @@
     <property name="text">
      <string>Cancel</string>
     </property>
+   </widget>
+   <widget class="QComboBox" name="workerGender">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>150</y>
+      <width>261</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Male</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Female</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
