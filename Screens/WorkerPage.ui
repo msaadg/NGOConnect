@@ -17,9 +17,9 @@
    <widget class="QTableWidget" name="workerDetails">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>390</x>
       <y>61</y>
-      <width>591</width>
+      <width>551</width>
       <height>261</height>
      </rect>
     </property>
@@ -100,7 +100,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>390</x>
       <y>40</y>
       <width>281</width>
       <height>16</height>
@@ -115,7 +115,7 @@
      <rect>
       <x>40</x>
       <y>40</y>
-      <width>281</width>
+      <width>311</width>
       <height>281</height>
      </rect>
     </property>
@@ -145,7 +145,7 @@
     <widget class="QComboBox" name="emailCombobox">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>140</x>
        <y>40</y>
        <width>161</width>
        <height>22</height>
@@ -160,7 +160,7 @@
     <widget class="QComboBox" name="nameCombobox">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>140</x>
        <y>70</y>
        <width>161</width>
        <height>22</height>
@@ -175,7 +175,7 @@
     <widget class="QComboBox" name="genderCombobox">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>140</x>
        <y>100</y>
        <width>161</width>
        <height>22</height>
@@ -200,7 +200,7 @@
     <widget class="QComboBox" name="ageCombobox">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>140</x>
        <y>130</y>
        <width>161</width>
        <height>22</height>
@@ -235,7 +235,7 @@
     <widget class="QPushButton" name="searchWorkerBtn">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>160</x>
        <y>230</y>
        <width>131</width>
        <height>41</height>
@@ -302,18 +302,18 @@
       <rect>
        <x>20</x>
        <y>160</y>
-       <width>91</width>
+       <width>111</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>From:</string>
+      <string>Registered After:</string>
      </property>
     </widget>
     <widget class="QDateEdit" name="fromDateEdit">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>160</x>
        <y>160</y>
        <width>131</width>
        <height>24</height>
@@ -323,7 +323,7 @@
     <widget class="QDateEdit" name="toDateEdit">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>160</x>
        <y>190</y>
        <width>131</width>
        <height>24</height>
@@ -335,18 +335,18 @@
       <rect>
        <x>20</x>
        <y>190</y>
-       <width>51</width>
+       <width>121</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>To:</string>
+      <string>Registered Before:</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="fromCheckbox">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>140</x>
        <y>160</y>
        <width>21</width>
        <height>20</height>
@@ -359,7 +359,7 @@
     <widget class="QCheckBox" name="toCheckbox">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>140</x>
        <y>190</y>
        <width>21</width>
        <height>20</height>

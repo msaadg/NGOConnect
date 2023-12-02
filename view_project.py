@@ -30,10 +30,109 @@ class ViewProject(QtWidgets.QMainWindow):
         self.projectSaveBtn.clicked.connect(lambda: self.saveProject(projectID))
         self.endProjectBtn.clicked.connect(lambda: self.endProject(projectID))
 
+        self.donationSearchBtn.clicked.connect(lambda: self.searchDonation(projectID))  
+
         self.loadProjectData(projectID)
+        self.loadDonationData(projectID)
 
     def refreshData(self, projectID):
         self.loadProjectData(projectID)
+        self.loadDonationData(projectID)
+
+    def loadDonationData(self, projectID):
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
+
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect database
+        # use_windows_authentication = True
+        # connection = pyodbc.connect(
+        #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        # )
+
+        cursor = connection.cursor()
+
+        select_query = """
+            SELECT u.userName, d.amount, d.donationDateTime
+            FROM Users u, Donation d
+            WHERE u.userID = d.userID and d.projectID = ?
+        """
+
+        header = self.donationDetails.horizontalHeader()
+        for i in range(4):
+            header.setSectionResizeMode(i, QHeaderView.ResizeMode.Stretch)
+        self.donationDetails.clearContents()
+        self.donationDetails.setRowCount(0)
+
+        cursor.execute(select_query, projectID)
+        # columns are Name, Amount, Time, and Date in donationDetails
+        for row_index, row_data in enumerate(cursor.fetchall()):
+            self.donationDetails.insertRow(row_index)
+            for col_index, cell_data in enumerate(row_data):
+                if col_index == 2:
+                    date_time = str(cell_data).split(" ")
+                    date = QTableWidgetItem(date_time[0])
+                    time = QTableWidgetItem(date_time[1])
+                    self.donationDetails.setItem(row_index, col_index, time)
+                    self.donationDetails.setItem(row_index, col_index + 1, date)
+                    self.donationDetails.item(row_index, col_index).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    self.donationDetails.item(row_index, col_index + 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                else:
+                    item = QTableWidgetItem(str(cell_data))
+                    self.donationDetails.setItem(row_index, col_index, item)
+                    self.donationDetails.item(row_index, col_index).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+        # Close the database connection
+        connection.close()
+
+    def searchDonation(self, projectID):
+        self.loadDonationData(projectID)
+
+        # get date from startDate dateEdit
+        if self.startDate.date() == QDate(2000, 1, 1):
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Please Set Start Date Greater Than 2000-01-01")
+            Dialog.exec()
+            return
+        
+        # check if startDate is greater than endDate
+        if self.startDate.date() > self.endDate.date():
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Start Date Cannot Be Greater Than End Date")
+            Dialog.exec()
+            return
+        
+        # check if startDate is greater than current date
+        if self.startDate.date() > QDate.currentDate():
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Start Date Cannot Be Greater Than Current Date")
+            Dialog.exec()
+            return
+        
+        # check if endDate is greater than current date
+        if self.endDate.date() > QDate.currentDate():
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("End Date Cannot Be Greater Than Current Date")
+            Dialog.exec()
+            return
+        
+        for row in range(self.donationDetails.rowCount() - 1, -1, -1):
+            print(self.donationDetails.item(row, 3).text())
+            if self.donationDetails.item(row, 3).text() < self.startDate.date().toString("yyyy-MM-dd") or self.donationDetails.item(row, 3).text() > self.endDate.date().toString("yyyy-MM-dd"):
+                print(True)
+                self.donationDetails.removeRow(row)
+
+        if self.donorName.text() != "":
+            for row in range(self.donationDetails.rowCount() - 1, -1, -1):
+                if self.donationDetails.item(row, 0).text() != self.donorName.text():
+                    print("nooeoe")
+                    self.donationDetails.removeRow(row)
+
 
     def loadProjectData(self, projectID):
         connection = pyodbc.connect(
