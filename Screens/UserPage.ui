@@ -17,9 +17,9 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>20</y>
-      <width>191</width>
+      <width>321</width>
       <height>81</height>
      </rect>
     </property>
@@ -29,7 +29,7 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>30</x>
        <y>20</y>
        <width>35</width>
        <height>10</height>
@@ -42,9 +42,9 @@
     <widget class="QLineEdit" name="userName">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>70</x>
        <y>20</y>
-       <width>131</width>
+       <width>231</width>
        <height>16</height>
       </rect>
      </property>
@@ -52,7 +52,7 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>30</x>
        <y>50</y>
        <width>31</width>
        <height>16</height>
@@ -65,53 +65,20 @@
     <widget class="QLineEdit" name="userEmail">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>70</x>
        <y>50</y>
-       <width>131</width>
+       <width>231</width>
        <height>16</height>
       </rect>
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>231</width>
-      <height>241</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Past Donated Projects</string>
-    </property>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>201</width>
-       <height>192</height>
-      </rect>
-     </property>
-     <column>
-      <property name="text">
-       <string>NGO Name</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Project Name</string>
-      </property>
-     </column>
-    </widget>
-   </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>400</x>
       <y>20</y>
-      <width>431</width>
+      <width>351</width>
       <height>241</height>
      </rect>
     </property>
@@ -173,7 +140,7 @@
     <widget class="QPushButton" name="SearchButton">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>210</x>
        <y>200</y>
        <width>71</width>
        <height>20</height>
@@ -189,7 +156,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>120</x>
        <y>50</y>
        <width>191</width>
        <height>22</height>
@@ -202,7 +169,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>120</x>
        <y>80</y>
        <width>191</width>
        <height>22</height>
@@ -215,7 +182,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>120</x>
        <y>110</y>
        <width>191</width>
        <height>22</height>
@@ -228,12 +195,55 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>120</x>
        <y>140</y>
        <width>191</width>
        <height>22</height>
       </rect>
      </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>371</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Past Donated Projects</string>
+    </property>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>341</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>NGO Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Project Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Donated Amount</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Date/Time</string>
+      </property>
+     </column>
     </widget>
    </widget>
   </widget>

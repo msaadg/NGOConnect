@@ -81,3 +81,10 @@ CREATE TABLE WorkerProject (
     FOREIGN KEY (workerID) REFERENCES Worker (workerID),
     FOREIGN KEY (projectID) REFERENCES Project (projectID)
 );
+
+ALTER TABLE Project
+ADD categoryName VARCHAR(255);
+
+ALTER TABLE Project
+ADD areaName VARCHAR(255);
+

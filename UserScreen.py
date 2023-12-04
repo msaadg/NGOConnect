@@ -19,11 +19,12 @@ class UserData(QtWidgets.QMainWindow):
         self.userEmail.setDisabled(True)
         self.loadData(userID)
 
-        self.SearchButton.clicked.connect(self.Search)
+        self.SearchButton.clicked.connect(lambda: self.Search(userID))
         self.checkBox_2.stateChanged.connect(self.ProjectSearch)
         self.checkBox.stateChanged.connect(self.NGOSearch)
         self.checkBox_3.stateChanged.connect(self.CategorySearch)
         self.checkBox_4.stateChanged.connect(self.AreaSearch)
+        
 
     def loadData(self, userID):
         server = 'SABIR\SQLEXPRESS'
@@ -35,6 +36,29 @@ class UserData(QtWidgets.QMainWindow):
         userData = cursor.fetchall()[0]
         self.userName.setText(userData[1])
         self.userEmail.setText(userData[0])
+
+        cursor.execute("""select NGO.name, Project.projectName, Donation.amount, donation.donationDateTime
+                       from Users join Donation on Donation.userID=Users.userID 
+                       join Project on Project.projectID=Donation.projectID
+                       join NGO on NGO.ngoID=Project.ngoID
+                       where Users.userID=?
+                       """, userID)
+        data=cursor.fetchall()
+        rows=len(data)
+        cols=len(data[0])
+        for col_index in range(cols):
+            self.tableWidget.setColumnWidth(3, 200)
+
+        self.tableWidget.setRowCount(rows)
+        self.tableWidget.setColumnCount(cols)
+        for row_index, row_data in enumerate(data):
+            for col_index, cell_data in enumerate(row_data):
+                item = QTableWidgetItem(str(cell_data))
+                self.tableWidget.setItem(row_index, col_index, item)
+        self.tableWidget.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+
+
+
         connection.close()
 
     def ProjectSearch(self):
@@ -115,20 +139,43 @@ class UserData(QtWidgets.QMainWindow):
         else:
             self.comboBox_5.setEnabled(False)
 
-    def Search(self):
+    def Search(self, userID):
+        
         if self.checkBox_2.isChecked():
             selected_project=self.comboBox_3.currentText()
-            self.ProjectPage = ProjectDetails(selected_project)
-            self.ProjectPage.show()
-             
+            server = 'SABIR\SQLEXPRESS'
+            database = 'NGOConnect'  # Name of your NGOConnect database
+            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
+            cursor = connection.cursor()
+            #load all areas in comboBox_5
+            cursor.execute("select ngoID from project where projectName=?", selected_project)
+            ngo_ID=cursor.fetchall()[0][0]
+            cursor.execute("select projectID from project where projectName=?", selected_project)
+            project_ID=cursor.fetchall()[0][0]
+            cursor.execute("select name from NGO where ngoID=?", ngo_ID)
+            ngo_Name=cursor.fetchall()[0][0]
+            cursor.execute("select getdate()")
+            donationDateTime=cursor.fetchall()[0][0]
+            print(ngo_Name, ngo_ID, userID, donationDateTime)
+            self.comboBox_5.clear()
+            self.ProjectPage = ProjectDetails(project_ID, ngo_Name, ngo_ID, userID, donationDateTime)
+            self.ProjectPage.show()
+            self.ProjectPage.DonateButton.clicked.connect(lambda: self.loadData(userID))
+            
         else:
             if self.checkBox_3.isChecked() or self.checkBox_4.isChecked():
                 self.NGOList = NGOs()
                 self.NGOList.show()
             else:
                 if self.checkBox.isChecked():
-                    self.NGOPage = NGODetails()
+                    selected_NGO=self.comboBox_2.currentText()
+                    self.NGOPage = NGODetails(selected_NGO, userID)
                     self.NGOPage.show()
+                    self.NGOPage.ShowProject.destroyed.connect(lambda: self.loadData(userID))
+
+
+    
+ 
             
         

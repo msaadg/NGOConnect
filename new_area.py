@@ -83,11 +83,8 @@ class NewArea(QtWidgets.QMainWindow):
 
             server = 'SABIR\SQLEXPRESS'
             database = 'NGOConnect'  # Name of your NGOConnect database
- 
             connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
-
             cursor = connection.cursor()
-
             areaName = self.areas.currentText()
 
             #get areaCode
