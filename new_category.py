@@ -34,16 +34,13 @@ class NewCategory(QtWidgets.QMainWindow):
     
     def loadCategories(self, ngoID):
         # load data into catgeories combo box
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # use_windows_authentication = True
         # connection = pyodbc.connect(
         #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         # )
+
+        server = 'SABIR\SQLEXPRESS'
+        database = 'NGOConnect'  # Name of your NGOConnect databas 
+        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
         cursor = connection.cursor()
 
@@ -82,16 +79,13 @@ class NewCategory(QtWidgets.QMainWindow):
         Dialog.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         Option = Dialog.exec()
         if Option == QtWidgets.QMessageBox.StandardButton.Yes:
-            connection = pyodbc.connect(
-                    'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-            )
-
-            # server = 'SABIR\SQLEXPRESS'
-            # database = 'NGOConnect'  # Name of your NGOConnect database
-            # use_windows_authentication = True
             # connection = pyodbc.connect(
-            #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;' 
+            #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
             # )
+
+            server = 'SABIR\SQLEXPRESS'
+            database = 'NGOConnect'  # Name of your NGOConnect database 
+            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
 

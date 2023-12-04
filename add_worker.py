@@ -38,8 +38,7 @@ class AddWorker(QtWidgets.QMainWindow):
         # server = 'SABIR\SQLEXPRESS'
         # database = 'NGOConnect'  # Name of your NGOConnect database
         # use_windows_authentication = True 
-        # connection = pyodbc.connect(
-        # )
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
         cursor = connection.cursor()
 

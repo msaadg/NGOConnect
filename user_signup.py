@@ -1,5 +1,5 @@
-from PyQt6 import QtWidgets, uic, QtCore
-from PyQt6.QtCore import QDate, QTimer
+from PyQt6 import QtWidgets, uic, QtCore , QtGui
+from PyQt6.QtCore import QDate, QTimer 
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
@@ -10,6 +10,7 @@ class UserSignup(QtWidgets.QMainWindow):
         super().__init__()
 
         uic.loadUi('Screens/UserSignUp.ui', self)
+
 
         self.userSignupBtn.clicked.connect(self.UserCreate)
 
@@ -23,16 +24,14 @@ class UserSignup(QtWidgets.QMainWindow):
         userConfirmPassword = self.userConfirmPassword.text()
 
         regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # use_windows_authentication = True 
         # connection = pyodbc.connect(
         #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         # )
+
+        server = 'SABIR\SQLEXPRESS'
+        database = 'NGOConnect'  # Name of your NGOConnect datab
+        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+
 
         cursor = connection.cursor()
         cursor.execute("SELECT userEmail FROM Users")

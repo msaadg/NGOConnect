@@ -4,6 +4,8 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidge
 import sys
 import pyodbc
 
+from UserScreen import UserData
+
 class UserLogin(QtWidgets.QMainWindow):  
     def __init__(self):
         super().__init__()
@@ -14,19 +16,21 @@ class UserLogin(QtWidgets.QMainWindow):
 
 
     def ShowUser(self):
+
+        # self.user_page = UserData()
+        # self.user_page.show()
+        # self.close()
         userEmail = self.userEmail.text()
         userPassword = self.userPassword.text()
 
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # use_windows_authentication = True 
         # connection = pyodbc.connect(
         #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
         # )
+
+        server = 'SABIR\SQLEXPRESS'
+        database = 'NGOConnect'  # Name of your NGOConnect datab
+        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+
 
         cursor = connection.cursor()
 
@@ -50,12 +54,12 @@ class UserLogin(QtWidgets.QMainWindow):
             cursor.execute("SELECT userPassword FROM Users WHERE userEmail = ?", userEmail)
             userRealPassword = cursor.fetchall()[0][0]
             if userPassword == userRealPassword:
-                x += 1
-                # TODO: show NGO page
-
-                # self.view_userpage = UserPage()
-                # self.view_userpage.show()
-                # self.close()
+                cursor.execute("SELECT userID FROM users WHERE userEmail = ?", userEmail)
+                userID = cursor.fetchall()[0][0]
+                self.user_page = UserData(userID)
+                self.user_page.show()
+                self.close()
+                
             else:
                 Dialog = QtWidgets.QMessageBox()
                 Dialog.setWindowTitle("Error")
