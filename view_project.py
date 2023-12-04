@@ -231,8 +231,26 @@ class ViewProject(QtWidgets.QMainWindow):
         self.projectStartDate.setDisabled(False)
 
         self.projectSaveBtn.setDisabled(False)
-        self.projectEditBtn.setDisabled(True)
+
+        self.projectEditBtn.setText("Cancel")
+        self.projectEditBtn.clicked.connect(self.cancelEdit)
+
         self.endProjectBtn.setDisabled(True)
+
+    def cancelEdit(self):
+        self.projectName.setDisabled(True)
+        self.projectScale.setDisabled(True)
+        self.projectStartDate.setDisabled(True)
+
+        self.projectSaveBtn.setDisabled(True)
+
+        self.projectEditBtn.setText("Edit")
+        self.projectEditBtn.clicked.connect(self.editProject)
+
+        if self.projectEndDate.text() == " -":
+            self.endProjectBtn.setDisabled(False)
+        else:
+            self.endProjectBtn.setDisabled(True)
 
     def saveProject(self, projectID):
         Dialog = QtWidgets.QMessageBox()
@@ -264,11 +282,9 @@ class ViewProject(QtWidgets.QMainWindow):
             self.projectStartDate.setDisabled(True)
 
             self.projectSaveBtn.setDisabled(True)
-            self.projectEditBtn.setDisabled(False)
-            if self.projectEndDate.text() == " -":
-                self.endProjectBtn.setDisabled(False)
-            else:
-                self.endProjectBtn.setDisabled(True)
+
+            self.projectEditBtn.setText("Edit")
+            self.projectEditBtn.clicked.connect(self.editProject)
 
     def endProject(self, projectID):
         Dialog = QtWidgets.QMessageBox()
