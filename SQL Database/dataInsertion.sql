@@ -90,3 +90,36 @@ VALUES
 (6, 1, 'Assigned'),
 (7, 4, 'Assigned'),
 (8, 3, 'Assigned');
+
+UPDATE Project
+SET categoryName = 'Education'
+WHERE projectName IN ('The Citizens Foundation School', 'Akhuwat Education Program');
+
+UPDATE Project
+SET categoryName = 'Healthcare'
+WHERE projectName IN ('Edhi Ambulance Service', 'Saylani Mobile Clinic', 'Saylani Eye Camp',  'The Citizens Foundation Hospital');
+
+UPDATE Project
+SET categoryName = 'Microfinance'
+WHERE projectName = 'Akhuwat Microfinance Program';
+
+UPDATE Project
+SET categoryName = 'Social Welfare'
+WHERE projectName = 'Edhi Home';
+
+
+UPDATE Project
+SET areaName = 'Gulshan-e-Iqbal'
+WHERE projectName IN ('Edhi Home', 'The Citizens Foundation School');
+
+UPDATE Project
+SET areaName = 'Gulistan-e-Johar'
+WHERE projectName IN ('Edhi Ambulance Service', 'The Citizens Foundation Hospital');
+
+UPDATE Project
+SET areaName = 'Gulberg'
+WHERE projectName IN ('Akhuwat Microfinance Program', 'Saylani Mobile Clinic');
+
+UPDATE Project
+SET areaName = 'Defence'
+WHERE projectName IN ('Akhuwat Education Program', 'Saylani Eye Camp');
