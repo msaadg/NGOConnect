@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>447</width>
+    <width>522</width>
     <height>283</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Assign New Worker To Project</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="workers">
@@ -23,12 +26,15 @@
       <height>61</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>20</y>
       <width>351</width>
       <height>16</height>
      </rect>
@@ -41,13 +47,36 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>110</y>
+      <y>120</y>
       <width>131</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+    </property>
     <property name="text">
      <string>Done</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -56,7 +85,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>447</width>
+     <width>522</width>
      <height>36</height>
     </rect>
    </property>

@@ -22,9 +22,13 @@ class NGODetails(QtWidgets.QMainWindow):
         
         self.lineEdit.setText(self.selected_NGO)
         self.lineEdit.setEnabled(False)
-        server = 'SABIR\SQLEXPRESS'
-        database = 'NGOConnect'  # Name of your NGOConnect database
-        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
+
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect database
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
         cursor = connection.cursor()
         cursor.execute("select address from NGO where name=?", self.selected_NGO)
         ngo_address=cursor.fetchall()[0][0]
@@ -61,15 +65,19 @@ class NGODetails(QtWidgets.QMainWindow):
             selected_project = data[selected_row][0]
             selected_category = data[selected_row][1]
             selected_area = data[selected_row][2]
-            if self.view_button_connection:
-                self.ViewButton.clicked.disconnect()
-            self.ViewButton.clicked.connect(lambda: self.ShowProject(selected_project, selected_NGO, ngo_ID, userID, selected_category, selected_area))
-            self.view_button_connection = True
+            # if self.view_button_connection:
+            #     self.ViewButton.clicked.disconnect()
+            # self.ViewButton.clicked.connect(lambda: self.ShowProject(selected_project, selected_NGO, ngo_ID, userID, selected_category, selected_area))
+            # self.view_button_connection = True
 
     def ShowProject(self, selected_project, selected_NGO, ngo_ID, userID, selected_category, selected_area):
-        server = 'SABIR\SQLEXPRESS'
-        database = 'NGOConnect'  # Name of your NGOConnect database
-        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
+
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect database
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
         cursor = connection.cursor()
         cursor.execute("select projectID from Project where projectName=? and areaName=? and categoryName=?", selected_project, selected_area, selected_category)
         projectID=cursor.fetchall()[0][0]
@@ -105,6 +113,43 @@ class ProjectDetails(QtWidgets.QMainWindow):
         self.DonateButton.clicked.connect(lambda: self.Donate(self.projectID, self.ngo_ID, self.userID, _donationDateTime))
     
     def Donate(self, _project_ID, _ngo_ID, _userID, _donationDateTime):
+        # if fields empty, return error
+        if self.lineEdit.text()=="":
+            self.Dialog = QtWidgets.QMessageBox()
+            self.Dialog.setWindowTitle("Error")
+            self.Dialog.setText("Please Enter Amount")
+            self.Dialog.exec()
+            return
+        
+        if self.lineEdit_2.text()=="":
+            self.Dialog = QtWidgets.QMessageBox()
+            self.Dialog.setWindowTitle("Error")
+            self.Dialog.setText("Please Enter Card Number")
+            self.Dialog.exec()
+            return
+        
+        # if lineEdit_4 > currentdate
+        if self.dateEdit.date() < QDate.currentDate():
+            self.Dialog = QtWidgets.QMessageBox()
+            self.Dialog.setWindowTitle("Error")
+            self.Dialog.setText("Expiry Date Must Be Greater Than Current Date")
+            self.Dialog.exec()
+            return
+        
+        if self.lineEdit_4.text()=="":
+            self.Dialog = QtWidgets.QMessageBox()
+            self.Dialog.setWindowTitle("Error")
+            self.Dialog.setText("Please Enter CVV")
+            self.Dialog.exec()
+            return
+        
+        # if self.lineEdit_6.text()=="":
+        #     self.Dialog = QtWidgets.QMessageBox()
+        #     self.Dialog.setWindowTitle("Error")
+        #     self.Dialog.setText("Please Enter Name")
+        #     self.Dialog.exec()
+        #     return
+
         _Amount=int(self.lineEdit.text())
         # print(_project_ID, _ngo_ID, _userID, _donationDateTime, _Amount)
         self.Dialog = QtWidgets.QMessageBox()
@@ -119,9 +164,14 @@ class ProjectDetails(QtWidgets.QMainWindow):
             Dialog2.setText("The Amount Is Successfully Donated. Thankyou")
             Dialog2.exec()
             self.close()
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect datab
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+
+            connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect datab
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
             cursor = connection.cursor()
             add_query="""
                 INSERT INTO Donation(projectID, userID, donationDateTime, amount)
@@ -147,9 +197,14 @@ class NGOs(QtWidgets.QMainWindow):
         self.selected_Area=_selected_Area
         super().__init__()
         uic.loadUi('Screens/screen2.ui', self)  #Screens/UserSignUp.ui
-        server = 'SABIR\SQLEXPRESS'
-        database = 'NGOConnect' 
-        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
+
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect' 
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
         cursor=connection.cursor()
         if self.selected_Area!=None and self.selected_Category!=None:
             cursor.execute("""
@@ -177,7 +232,6 @@ class NGOs(QtWidgets.QMainWindow):
             self.listWidget.addItem(list_item)
 
 
-        self.SelectButton.clicked.connect(self.ShowNGO)
     
     def ShowNGO(self):
         self.NGOPage = NGODetails()

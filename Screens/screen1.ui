@@ -7,19 +7,22 @@
     <x>0</x>
     <y>0</y>
     <width>778</width>
-    <height>456</height>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>20</y>
-      <width>291</width>
+      <width>191</width>
       <height>81</height>
      </rect>
     </property>
@@ -44,9 +47,12 @@
       <rect>
        <x>50</x>
        <y>20</y>
-       <width>191</width>
+       <width>131</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_2">
@@ -67,9 +73,12 @@
       <rect>
        <x>50</x>
        <y>50</y>
-       <width>191</width>
+       <width>131</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
    </widget>
@@ -78,7 +87,7 @@
      <rect>
       <x>10</x>
       <y>120</y>
-      <width>361</width>
+      <width>231</width>
       <height>241</height>
      </rect>
     </property>
@@ -90,9 +99,12 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>311</width>
+       <width>201</width>
        <height>192</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
      <column>
       <property name="text">
@@ -104,24 +116,14 @@
        <string>Project Name</string>
       </property>
      </column>
-     <column>
-      <property name="text">
-       <string>Donated Amount</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Date/Time</string>
-      </property>
-     </column>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>290</x>
       <y>20</y>
-      <width>321</width>
+      <width>431</width>
       <height>241</height>
      </rect>
     </property>
@@ -183,11 +185,15 @@
     <widget class="QPushButton" name="SearchButton">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>200</y>
+       <x>350</x>
+       <y>189</y>
        <width>71</width>
-       <height>20</height>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>SEARCH</string>
@@ -199,11 +205,14 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>160</x>
        <y>50</y>
        <width>191</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_3">
@@ -212,11 +221,14 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>160</x>
        <y>80</y>
        <width>191</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_4">
@@ -225,11 +237,14 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>160</x>
        <y>110</y>
        <width>191</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_5">
@@ -238,13 +253,35 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>160</x>
        <y>140</y>
        <width>191</width>
        <height>22</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -253,7 +290,7 @@
      <x>0</x>
      <y>0</y>
      <width>778</width>
-     <height>18</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

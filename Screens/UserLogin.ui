@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>User Login </string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -69,6 +72,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="userPassword">
     <property name="geometry">
@@ -79,18 +85,44 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="userLoginBtn">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>150</y>
+      <x>270</x>
+      <y>140</y>
       <width>91</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+    </property>
     <property name="text">
      <string>Login</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

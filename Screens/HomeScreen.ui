@@ -13,49 +13,38 @@
   <property name="windowTitle">
    <string>NGOConnect</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="exitBtn">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>570</y>
-      <width>75</width>
-      <height>23</height>
+      <x>704</x>
+      <y>582</y>
+      <width>71</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
     </property>
     <property name="text">
      <string>Exit</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>10</y>
-      <width>401</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Bahnschrift SemiBold</family>
-      <pointsize>24</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Welcome To NGO-Connect</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>110</y>
-      <width>361</width>
-      <height>361</height>
+      <x>380</x>
+      <y>40</y>
+      <width>351</width>
+      <height>231</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 241);</string>
     </property>
     <property name="title">
      <string>NGO</string>
@@ -63,8 +52,8 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>40</y>
+       <x>140</x>
+       <y>20</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -85,20 +74,20 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>80</y>
+       <y>50</y>
        <width>171</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>FOR UNREGISTERED NGO:</string>
+      <string>To Register As A New NGO:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="ngoSignupBtn">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
+       <y>70</y>
        <width>331</width>
        <height>51</height>
       </rect>
@@ -110,6 +99,10 @@
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>SIGN-UP</string>
      </property>
@@ -118,7 +111,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>240</y>
+       <y>140</y>
        <width>141</width>
        <height>16</height>
       </rect>
@@ -131,9 +124,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>260</y>
+       <y>160</y>
        <width>331</width>
-       <height>31</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
@@ -143,19 +136,45 @@
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>LOGIN</string>
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>190</y>
+      <width>341</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>110</y>
-      <width>341</width>
-      <height>361</height>
+      <x>380</x>
+      <y>280</y>
+      <width>351</width>
+      <height>251</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 241);</string>
     </property>
     <property name="title">
      <string>USER</string>
@@ -163,8 +182,8 @@
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>30</y>
+       <x>130</x>
+       <y>10</y>
        <width>111</width>
        <height>51</height>
       </rect>
@@ -189,15 +208,18 @@
       </rect>
      </property>
      <property name="text">
-      <string>Are You A New User?</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../Logo.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="userSignupBtn">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
-       <width>311</width>
+       <y>70</y>
+       <width>331</width>
        <height>51</height>
       </rect>
      </property>
@@ -208,6 +230,10 @@
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>SIGN-UP</string>
      </property>
@@ -216,7 +242,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>240</y>
+       <y>150</y>
        <width>141</width>
        <height>16</height>
       </rect>
@@ -229,9 +255,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>260</y>
-       <width>311</width>
-       <height>31</height>
+       <y>170</y>
+       <width>331</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
@@ -241,8 +267,25 @@
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>LOGIN</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>211</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>To Register As A New User:</string>
      </property>
     </widget>
    </widget>

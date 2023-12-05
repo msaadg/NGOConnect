@@ -9,13 +9,13 @@ class UpdateWorker(QtWidgets.QMainWindow):
         super().__init__()
         uic.loadUi('Screens/UpdateWorker.ui',self)
 
-        # connection = pyodbc.connect(
-        #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        # )
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
 
-        server = 'SABIR\SQLEXPRESS'
-        database = 'NGOConnect'  # Name of your NGOConnect datab
-        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect datab
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
         cursor = connection.cursor()
         cursor.execute("SELECT workerID FROM Worker WHERE workerEmail = ?", workerEmail)
@@ -27,13 +27,13 @@ class UpdateWorker(QtWidgets.QMainWindow):
         self.updateWorkerCancelBtn.clicked.connect(lambda: self.close())
 
     def loadData(self, workerID):
-        # connection = pyodbc.connect(
-        #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        # )
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
 
-        server = 'SABIR\SQLEXPRESS'
-        database = 'NGOConnect'  # Name of your NGOConnect datab
-        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect datab
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
         cursor = connection.cursor()
         cursor.execute("SELECT workerEmail, workerName, gender, age FROM Worker WHERE workerID = ?", workerID)
@@ -57,12 +57,12 @@ class UpdateWorker(QtWidgets.QMainWindow):
             workerGender = self.workerGender.text()
             workerAge = self.workerAge.text()
 
-            # connection = pyodbc.connect(
-            #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-            # )
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect datab
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            connection = pyodbc.connect(
+                    'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect datab
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
 

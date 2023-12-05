@@ -19,23 +19,23 @@ class UI(QtWidgets.QMainWindow):
         
         # self.setStyleSheet("background-color: lightyellow; color: black;")
 
-        BackGroundLabel = QtWidgets.QLabel(self)
-        PixMap = QtGui.QPixmap(r"C:\Users\manna\Downloads\NGOConnect-main\8.png")
-        BackGroundLabel.setPixmap(PixMap)
-        BackGroundLabel.setGeometry(0, 0, PixMap.width(), PixMap.height())
-        BackGroundLabel.setScaledContents(True)  # Ensure the image scales with the QLabel
+        # BackGroundLabel = QtWidgets.QLabel(self)
+        # PixMap = QtGui.QPixmap(r"C:\Users\manna\Downloads\NGOConnect-main\8.png")
+        # BackGroundLabel.setPixmap(PixMap)
+        # BackGroundLabel.setGeometry(0, 0, PixMap.width(), PixMap.height())
+        # BackGroundLabel.setScaledContents(True)  # Ensure the image scales with the QLabel
 
-        # Make the QLabel ignore mouse events
-        BackGroundLabel.setAttribute(QtCore.Qt.WidgetAttribute.WA_TransparentForMouseEvents)
+        # # Make the QLabel ignore mouse eventsssss
+        # BackGroundLabel.setAttribute(QtCore.Qt.WidgetAttribute.WA_TransparentForMouseEvents)
 
-        # Make the label a child of the central widget to ensure it covers the entire window
-        if not self.centralWidget():
-            self.setCentralWidget(QtWidgets.QWidget())
-        if not self.centralWidget().layout():
-            self.centralWidget().setLayout(QtWidgets.QVBoxLayout())
+        # # Make the label a child of the central widget to ensure it covers the entire window
+        # if not self.centralWidget():
+        #     self.setCentralWidget(QtWidgets.QWidget())
+        # if not self.centralWidget().layout():
+        #     self.centralWidget().setLayout(QtWidgets.QVBoxLayout())
         
-        self.centralWidget().layout().addWidget(BackGroundLabel)
-        self.centralWidget().setStyleSheet(f"background-image: url({PixMap}); background-position: center; background-repeat: no-repeat;")          
+        # self.centralWidget().layout().addWidget(BackGroundLabel)
+        # self.centralWidget().setStyleSheet(f"background-image: url({PixMap}); background-position: center; background-repeat: no-repeat;")          
 
         self.ngoSignupBtn.clicked.connect(self.NGOSignup)
         self.ngoLoginBtn.clicked.connect(self.NGOLogin)

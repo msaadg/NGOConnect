@@ -81,9 +81,9 @@ class NewArea(QtWidgets.QMainWindow):
                 'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
             )
 
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect database
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
             cursor = connection.cursor()
             areaName = self.areas.currentText()
 

@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>444</width>
-    <height>316</height>
+    <height>342</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>New Worker</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -108,6 +111,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="workerEmail">
     <property name="geometry">
@@ -117,6 +123,9 @@
       <width>261</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="workerPassword">
@@ -128,6 +137,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="workerAge">
     <property name="geometry">
@@ -138,6 +150,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="addWorkerDoneBtn">
     <property name="geometry">
@@ -147,6 +162,10 @@
       <width>91</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
     </property>
     <property name="text">
      <string>Done</string>
@@ -161,6 +180,10 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+    </property>
     <property name="text">
      <string>Cancel</string>
     </property>
@@ -171,8 +194,11 @@
       <x>130</x>
       <y>150</y>
       <width>261</width>
-      <height>26</height>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
     </property>
     <item>
      <property name="text">
@@ -189,6 +215,25 @@
       <string>Female</string>
      </property>
     </item>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

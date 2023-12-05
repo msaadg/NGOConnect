@@ -266,18 +266,24 @@ class NGOPage(QtWidgets.QMainWindow):
                 'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
             )
 
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect database 
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database 
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
 
             cursor.execute("SELECT projectID FROM Project WHERE projectName = ?", projectName)
             projectID = cursor.fetchall()[0][0]
+
+            #delete from WorkerProject
             cursor.execute("DELETE FROM WorkerProject WHERE projectID = ?", projectID)
+
+            #delete from Donations
+            cursor.execute("DELETE FROM Donation WHERE projectID = ?", projectID)
 
             #delete from project
             cursor.execute("DELETE FROM Project WHERE projectName = ?", projectName)
+
 
             connection.commit()
             connection.close()

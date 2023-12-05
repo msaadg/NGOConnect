@@ -6,15 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>678</height>
+    <width>802</width>
+    <height>767</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Search</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="projectName">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -87,6 +93,9 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
     <widget class="QLineEdit" name="projectScale">
      <property name="geometry">
@@ -97,6 +106,9 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
     <widget class="QDateEdit" name="projectStartDate">
      <property name="geometry">
@@ -106,6 +118,9 @@
        <width>181</width>
        <height>24</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -125,10 +140,14 @@
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>200</y>
+       <y>190</y>
        <width>91</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Save</string>
@@ -138,10 +157,14 @@
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>200</y>
+       <y>190</y>
        <width>91</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Edit</string>
@@ -156,6 +179,10 @@
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>End Project</string>
      </property>
@@ -169,13 +196,16 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>390</y>
+      <y>410</y>
       <width>761</width>
       <height>231</height>
      </rect>
@@ -187,10 +217,14 @@
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>142</y>
+       <y>120</y>
        <width>131</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Add Worker</string>
@@ -204,6 +238,9 @@
        <width>591</width>
        <height>192</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
      <property name="rowCount">
       <number>6</number>
@@ -244,6 +281,10 @@
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>Remove Worker</string>
      </property>
@@ -255,7 +296,7 @@
       <x>319</x>
       <y>69</y>
       <width>461</width>
-      <height>331</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="title">
@@ -316,6 +357,9 @@
        <height>171</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
      <property name="rowCount">
       <number>6</number>
      </property>
@@ -349,11 +393,15 @@
     <widget class="QPushButton" name="donationSearchBtn">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>250</x>
        <y>70</y>
-       <width>191</width>
+       <width>201</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Search</string>
@@ -367,6 +415,9 @@
        <width>201</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_11">
@@ -382,10 +433,10 @@
       <string>From:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_12">
+    <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>200</x>
        <y>300</y>
        <width>141</width>
        <height>21</height>
@@ -398,26 +449,49 @@
     <widget class="QLineEdit" name="totalAmount">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>350</x>
        <y>300</y>
        <width>101</width>
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>660</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
    <zorder>groupBox</zorder>
    <zorder>projectName</zorder>
    <zorder>groupBox_2</zorder>
    <zorder>groupBox_3</zorder>
+   <zorder>label_12</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>24</height>
+     <width>802</width>
+     <height>36</height>
     </rect>
    </property>
   </widget>

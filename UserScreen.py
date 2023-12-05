@@ -19,6 +19,7 @@ class UserData(QtWidgets.QMainWindow):
         self.userEmail.setDisabled(True)
         self.loadData(userID)
 
+        # self.SearchButton.setEnabled(False)
         self.SearchButton.clicked.connect(lambda: self.Search(userID))
         self.checkBox_2.stateChanged.connect(self.ProjectSearch)
         self.checkBox.stateChanged.connect(self.NGOSearch)
@@ -27,9 +28,13 @@ class UserData(QtWidgets.QMainWindow):
         
 
     def loadData(self, userID):
-        server = 'SABIR\SQLEXPRESS'
-        database = 'NGOConnect' 
-        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
+
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect' 
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
         
         cursor=connection.cursor()
         cursor.execute("SELECT userEmail, userName FROM Users WHERE userID = ?", userID)
@@ -42,6 +47,7 @@ class UserData(QtWidgets.QMainWindow):
                        join Project on Project.projectID=Donation.projectID
                        join NGO on NGO.ngoID=Project.ngoID
                        where Users.userID=?
+                       order by(donation.donationDateTime) desc
                        """, userID)
         data=cursor.fetchall()
         rows=len(data)
@@ -64,10 +70,14 @@ class UserData(QtWidgets.QMainWindow):
     def ProjectSearch(self):
         if self.checkBox_2.isChecked() :
             self.comboBox_3.setEnabled(True)
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect database
-            use_windows_authentication = True 
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # use_windows_authentication = True 
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
             #load all projects in comboBox_3
@@ -84,10 +94,14 @@ class UserData(QtWidgets.QMainWindow):
     def NGOSearch(self):
         if self.checkBox.isChecked() :
             self.comboBox_2.setEnabled(True)
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect database
-            use_windows_authentication = True 
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # use_windows_authentication = True 
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
             #load all NJO name in comboBox_2
@@ -103,10 +117,15 @@ class UserData(QtWidgets.QMainWindow):
     def CategorySearch(self):
         if self.checkBox_3.isChecked() :
             self.comboBox_4.setEnabled(True)
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect database
-            use_windows_authentication = True 
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # use_windows_authentication = True 
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
             #load all categories in comboBox_4
@@ -122,10 +141,14 @@ class UserData(QtWidgets.QMainWindow):
     def AreaSearch(self):
         if self.checkBox_4.isChecked() :
             self.comboBox_5.setEnabled(True)
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect database
-            use_windows_authentication = True 
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # use_windows_authentication = True 
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
             #load all areas in comboBox_5
@@ -140,12 +163,18 @@ class UserData(QtWidgets.QMainWindow):
             self.comboBox_5.setEnabled(False)
 
     def Search(self, userID):
-        
-        if self.checkBox_2.isChecked():
+        # self.SearchButton.setEnabled(False)
+        if self.checkBox_2.isChecked() and self.comboBox_3.currentText():
+            self.SearchButton.setEnabled(True)
             selected_project=self.comboBox_3.currentText()
-            server = 'SABIR\SQLEXPRESS'
-            database = 'NGOConnect'  # Name of your NGOConnect database
-            connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            connection = pyodbc.connect(
+                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+            )
+
+
+            # server = 'SABIR\SQLEXPRESS'
+            # database = 'NGOConnect'  # Name of your NGOConnect database
+            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
             cursor = connection.cursor()
             #load all areas in comboBox_5
@@ -168,24 +197,20 @@ class UserData(QtWidgets.QMainWindow):
                 selected_Area=None
                 selected_Category=None
 
-                if self.checkBox_4.isChecked():
+                if self.checkBox_4.isChecked() and self.comboBox_5.currentText():
+                    self.SearchButton.setEnabled(True)
                     selected_Area=self.comboBox_5.currentText()
 
-                if self.checkBox_3.isChecked():
+                if self.checkBox_3.isChecked() and self.comboBox_4.currentText():
+                    self.SearchButton.setEnabled(True)
                     selected_Category=self.comboBox_4.currentText()
                 
                 self.NGOList = NGOs(selected_Category, selected_Area)
                 self.NGOList.show()
             else:
-                if self.checkBox.isChecked():
+                if self.checkBox.isChecked() and self.comboBox_2.currentText():
+                    self.SearchButton.setEnabled(True)
                     selected_NGO=self.comboBox_2.currentText()
                     self.NGOPage = NGODetails(selected_NGO, userID)
                     self.NGOPage.show()
                     # self.NGOPage.change.connect(lambda: self.loadData(userID))
-                        
-
-
-    
- 
-            
-        

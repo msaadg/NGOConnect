@@ -31,14 +31,14 @@ class AddWorker(QtWidgets.QMainWindow):
 
         regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
 
-        # connection = pyodbc.connect(
-        #     'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        # )
+        connection = pyodbc.connect(
+            'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
+        )
         
-        server = 'SABIR\SQLEXPRESS'
-        database = 'NGOConnect'  # Name of your NGOConnect database
-        use_windows_authentication = True 
-        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        # server = 'SABIR\SQLEXPRESS'
+        # database = 'NGOConnect'  # Name of your NGOConnect database
+        # use_windows_authentication = True 
+        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
 
         cursor = connection.cursor()
 
@@ -57,6 +57,27 @@ class AddWorker(QtWidgets.QMainWindow):
             Dialog = QtWidgets.QMessageBox()
             Dialog.setWindowTitle("Error")
             Dialog.setText("Invalid Email")
+            Option = Dialog.exec()
+            return
+        
+        elif not workerAge.isdigit():
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Invalid Age")
+            Option = Dialog.exec()
+            return
+        
+        elif int(workerAge) < 18:
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Age Must Be Greater Than 18")
+            Option = Dialog.exec()
+            return
+        
+        elif int(workerAge) > 100:
+            Dialog = QtWidgets.QMessageBox()
+            Dialog.setWindowTitle("Error")
+            Dialog.setText("Age Must Be Less Than 100")
             Option = Dialog.exec()
             return
 

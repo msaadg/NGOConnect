@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>524</width>
-    <height>399</height>
+    <height>368</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>UserRegister</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -95,6 +98,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="userEmail">
     <property name="geometry">
@@ -104,6 +110,9 @@
       <width>231</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="userPassword">
@@ -115,6 +124,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="userConfirmPassword">
     <property name="geometry">
@@ -125,18 +137,44 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="userSignupBtn">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>210</y>
+      <x>250</x>
+      <y>190</y>
       <width>131</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+    </property>
     <property name="text">
      <string>Sign Up</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>260</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

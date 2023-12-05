@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>NGO Data</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="ngoName">
     <property name="enabled">
@@ -20,8 +23,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>10</y>
+      <x>250</x>
+      <y>0</y>
       <width>341</width>
       <height>31</height>
      </rect>
@@ -80,6 +83,9 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
     <widget class="QDateEdit" name="ngoRegDate">
      <property name="geometry">
@@ -90,6 +96,9 @@
        <height>24</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="ngoEditBtn">
      <property name="geometry">
@@ -99,6 +108,10 @@
        <width>91</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Edit</string>
@@ -112,6 +125,10 @@
        <width>91</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Save</string>
@@ -128,6 +145,9 @@
        <width>201</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
@@ -160,10 +180,14 @@
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>130</y>
+       <y>110</y>
        <width>131</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Add New Project</string>
@@ -173,10 +197,14 @@
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>90</y>
+       <y>60</y>
        <width>131</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>View Project</string>
@@ -186,10 +214,14 @@
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>170</y>
+       <y>160</y>
        <width>131</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Delete Project</string>
@@ -209,6 +241,9 @@
        <width>581</width>
        <height>171</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
      <column>
       <property name="text">
@@ -253,6 +288,9 @@
        <height>111</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="ngoDeleteAreaBtn">
      <property name="geometry">
@@ -263,6 +301,10 @@
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>Delete Area</string>
      </property>
@@ -271,10 +313,14 @@
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>60</y>
+       <y>50</y>
        <width>121</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Add Area</string>
@@ -302,6 +348,10 @@
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+     </property>
      <property name="text">
       <string>Delete Category</string>
      </property>
@@ -315,15 +365,22 @@
        <height>111</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="ngoAddCategoryBtn">
      <property name="geometry">
       <rect>
        <x>250</x>
-       <y>60</y>
+       <y>40</y>
        <width>131</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Add Category</string>
@@ -359,14 +416,37 @@
    <widget class="QPushButton" name="ngoLogoutBtn">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>600</y>
+      <x>640</x>
+      <y>610</y>
       <width>131</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+    </property>
     <property name="text">
      <string>Log out</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>600</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

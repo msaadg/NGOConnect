@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>966</width>
-    <height>416</height>
+    <height>414</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 221, 222);
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTableWidget" name="workerDetails">
@@ -22,6 +26,9 @@
       <width>551</width>
       <height>261</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
     </property>
     <property name="rowCount">
      <number>6</number>
@@ -67,6 +74,10 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+    </property>
     <property name="text">
      <string>Add</string>
     </property>
@@ -80,6 +91,10 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
+    </property>
     <property name="text">
      <string>Remove</string>
     </property>
@@ -92,6 +107,10 @@
       <width>131</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
     </property>
     <property name="text">
      <string>Update</string>
@@ -151,6 +170,9 @@
        <height>22</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
      <item>
       <property name="text">
        <string/>
@@ -166,6 +188,9 @@
        <height>22</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
      <item>
       <property name="text">
        <string/>
@@ -180,6 +205,9 @@
        <width>161</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
      <item>
       <property name="text">
@@ -205,6 +233,9 @@
        <width>161</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
      <item>
       <property name="text">
@@ -240,6 +271,10 @@
        <width>131</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(138, 9, 47);
+background-color:rgb(255, 197, 198);;</string>
      </property>
      <property name="text">
       <string>Search</string>
@@ -319,6 +354,9 @@
        <height>24</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
     </widget>
     <widget class="QDateEdit" name="toDateEdit">
      <property name="geometry">
@@ -328,6 +366,9 @@
        <width>131</width>
        <height>24</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_10">
@@ -369,6 +410,25 @@
       <string/>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>340</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
