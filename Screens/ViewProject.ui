@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>679</height>
+    <height>678</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,7 +175,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>370</y>
+      <y>390</y>
       <width>761</width>
       <height>231</height>
      </rect>
@@ -255,7 +255,7 @@
       <x>319</x>
       <y>69</y>
       <width>461</width>
-      <height>301</height>
+      <height>331</height>
      </rect>
     </property>
     <property name="title">
@@ -382,6 +382,29 @@
       <string>From:</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>300</y>
+       <width>141</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Total Donated Amount:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="totalAmount">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>300</y>
+       <width>101</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <zorder>groupBox</zorder>
    <zorder>projectName</zorder>
@@ -394,7 +417,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>36</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

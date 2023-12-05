@@ -1,5 +1,5 @@
 from PyQt6 import QtWidgets, uic, QtCore
-from PyQt6.QtCore import QDate, QTimer
+from PyQt6.QtCore import QDate, QTimer, pyqtSignal
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
@@ -11,6 +11,8 @@ class NGODetails(QtWidgets.QMainWindow):
         self.selected_NGO=_selected_NGO
         self.userID=_userID
         self.view_button_connection = None
+        self.change=pyqtSignal(int)
+        
         super().__init__()
 
         uic.loadUi('Screens/screen 3.ui', self)  #Screens/UserSignUp.ui
@@ -47,7 +49,7 @@ class NGODetails(QtWidgets.QMainWindow):
             for col_index, cell_data in enumerate(row_data):
                 item = QTableWidgetItem(str(cell_data))
                 self.tableWidget.setItem(row_index, col_index, item)
-        self.tableWidget.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        # self.tableWidget.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
 
         connection.close()
 
@@ -76,16 +78,23 @@ class NGODetails(QtWidgets.QMainWindow):
 
         self.ProjectPage = ProjectDetails(projectID, selected_NGO, ngo_ID, userID, donationDateTime)
         self.ProjectPage.show()
-        self.ProjectPage.DonateButton.clicked.connect(lambda: self.ProjectPage.Donate(projectID, ngo_ID, userID, donationDateTime))
+        # self.ProjectPage.DonateButton.clicked.connect(lambda: self.ProjectPage.Donate(projectID, ngo_ID, userID, donationDateTime))
+        # self.ProjectPage.DonateButton.clicked.connect(self._donateButton)
 
+
+    # def _donateButton(self):
+    #     self.donateButton=1
+    #     self.change.emit()
 
 class ProjectDetails(QtWidgets.QMainWindow):  
+    
     def __init__(self, _projectID, _ngo_Name, _ngo_ID, _userID, _donationDateTime):
         self.ngo_Name=_ngo_Name
         self.ngo_ID=_ngo_ID
         self.userID=_userID
         self.donationDateTime=_donationDateTime
         self.projectID=_projectID
+        
         # self.Dialog = QtWidgets.QMessageBox()
         super().__init__()
         
@@ -133,10 +142,38 @@ class ProjectDetails(QtWidgets.QMainWindow):
 
         
 class NGOs(QtWidgets.QMainWindow):  
-    def __init__(self):
+    def __init__(self, _selected_Category, _selected_Area,):
+        self.selected_Category=_selected_Category
+        self.selected_Area=_selected_Area
         super().__init__()
-
         uic.loadUi('Screens/screen2.ui', self)  #Screens/UserSignUp.ui
+        server = 'SABIR\SQLEXPRESS'
+        database = 'NGOConnect' 
+        connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        cursor=connection.cursor()
+        if self.selected_Area!=None and self.selected_Category!=None:
+            cursor.execute("""
+                            select projectName from Project
+                           where categoryName=? and areaName=?
+                            """, self.selected_Category, self.selected_Area)
+        elif self.selected_Area!=None:
+            cursor.execute("""
+                            select projectName from Project
+                           where areaName=?
+                            """, self.selected_Area)
+        elif self.selected_Category!=None:
+            cursor.execute("""
+                            select projectName from Project
+                           where categoryName=?
+                            """, self.selected_Category)
+
+
+        data=cursor.fetchall()
+        # rows=len(data)
+        # self.tableWidget.setRowCount(rows)
+        for i in data:
+            print(data)
+
 
         self.SelectButton.clicked.connect(self.ShowNGO)
     

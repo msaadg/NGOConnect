@@ -165,14 +165,24 @@ class UserData(QtWidgets.QMainWindow):
             
         else:
             if self.checkBox_3.isChecked() or self.checkBox_4.isChecked():
-                self.NGOList = NGOs()
+                selected_Area=None
+                selected_Category=None
+
+                if self.checkBox_4.isChecked():
+                    selected_Area=self.comboBox_5.currentText()
+
+                if self.checkBox_3.isChecked():
+                    selected_Category=self.comboBox_4.currentText()
+                
+                self.NGOList = NGOs(selected_Category, selected_Area)
                 self.NGOList.show()
             else:
                 if self.checkBox.isChecked():
                     selected_NGO=self.comboBox_2.currentText()
                     self.NGOPage = NGODetails(selected_NGO, userID)
                     self.NGOPage.show()
-                    self.NGOPage.ShowProject.destroyed.connect(lambda: self.loadData(userID))
+                    # self.NGOPage.change.connect(lambda: self.loadData(userID))
+                        
 
 
     
