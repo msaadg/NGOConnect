@@ -29,7 +29,7 @@
      </font>
     </property>
     <property name="text">
-     <string>The following Ngo's operate in the selected area/category :</string>
+     <string>The following Project operates in the selected area/category :</string>
     </property>
    </widget>
    <widget class="QPushButton" name="SelectButton">

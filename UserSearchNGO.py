@@ -1,6 +1,6 @@
 from PyQt6 import QtWidgets, uic, QtCore
 from PyQt6.QtCore import QDate, QTimer, pyqtSignal
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QListWidget, QListWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
 
@@ -171,8 +171,10 @@ class NGOs(QtWidgets.QMainWindow):
         data=cursor.fetchall()
         # rows=len(data)
         # self.tableWidget.setRowCount(rows)
-        for i in data:
-            print(data)
+        for item_data in data:
+            item_text = item_data[0]
+            list_item = QListWidgetItem(item_text)
+            self.listWidget.addItem(list_item)
 
 
         self.SelectButton.clicked.connect(self.ShowNGO)
