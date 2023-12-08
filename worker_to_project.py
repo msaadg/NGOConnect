@@ -69,16 +69,7 @@ class WorkerToProject(QtWidgets.QMainWindow):
         if Option == QMessageBox.StandardButton.Ok:
             selectedWorkerEmail = selectedWorker.split(' - ')[0]
 
-            connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-            )
-
-            # server = 'SABIR\SQLEXPRESS'
-            # database = 'NGOConnect'  # Name of your NGOConnect database
-            # use_windows_authentication = True
-            # connection = pyodbc.connect(
-            #     'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-            # )
+            connection = pyodbc.connect(connectionString.connection_string)
             
             cursor = connection.cursor()
             cursor.execute("SELECT workerID FROM Worker WHERE workerEmail = ?", selectedWorkerEmail)

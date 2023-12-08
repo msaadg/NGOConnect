@@ -200,10 +200,10 @@ class NGOs(QtWidgets.QMainWindow):
         connection = pyodbc.connect(connectionString.connection_string)
         cursor=connection.cursor()
         if self.selected_Area!=None and self.selected_Category!=None and self.selected_NGO!=None:
-            print(self.selected_Category, self.selected_Area, self.selected_NGO)
+            # print(self.selected_Category, self.selected_Area, self.selected_NGO)
             cursor.execute("select ngoID from NGO where name=?", self.selected_NGO)
             ngoID=cursor.fetchall()[0][0]
-            print(ngoID)
+            # print(ngoID)
 
             cursor.execute("""
                             select projectName from Project

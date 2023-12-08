@@ -127,8 +127,8 @@ class NGOPage(QtWidgets.QMainWindow):
             connecion = pyodbc.connect(connectionString.connection_string)
             cursor = connecion.cursor()
             cursor.execute("UPDATE NGO SET name = ?, ngoEmail = ?, address = ?, regDate = ? WHERE ngoID = ?", self.ngoName.text(), self.ngoEmail.text(), self.ngoAddress.text(), self.ngoRegDate.date().toPyDate(), ngoID)
-            print("updated")
-            print(ngoID)
+            # print("updated")
+            # print(ngoID)
             connecion.commit()
             connecion.close()
 
