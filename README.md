@@ -6,4 +6,6 @@ NGOConnect is a platform connecting and bringing together all NGOs from Pakistan
 
 To run the project, kindly open the SQL Database folder and use the NGOConnect.sql file to create the database. Use dataInsertion.sql to update the database.
 
+Define your connection string in connectionString.py
+
 Run the main.py file to start the application.

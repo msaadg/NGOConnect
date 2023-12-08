@@ -39,15 +39,16 @@ class NGODetails(QtWidgets.QMainWindow):
                        from Project where ngoID=?
                        """, ngo_ID)
         data=cursor.fetchall()
-        rows=len(data)
-        cols=len(data[0])
-        
-        self.tableWidget.setRowCount(rows)
-        self.tableWidget.setColumnCount(cols)
-        for row_index, row_data in enumerate(data):
-            for col_index, cell_data in enumerate(row_data):
-                item = QTableWidgetItem(str(cell_data))
-                self.tableWidget.setItem(row_index, col_index, item)
+        if data:
+            rows=len(data)
+            cols=len(data[0])
+            
+            self.tableWidget.setRowCount(rows)
+            self.tableWidget.setColumnCount(cols)
+            for row_index, row_data in enumerate(data):
+                for col_index, cell_data in enumerate(row_data):
+                    item = QTableWidgetItem(str(cell_data))
+                    self.tableWidget.setItem(row_index, col_index, item)
         # self.tableWidget.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
 
         connection.close()
@@ -117,6 +118,13 @@ class ProjectDetails(QtWidgets.QMainWindow):
             self.Dialog.exec()
             return
         
+        if len(self.lineEdit_2.text())<12:
+            self.Dialog = QtWidgets.QMessageBox()
+            self.Dialog.setWindowTitle("Error")
+            self.Dialog.setText("Please Enter a valid Card Number")
+            self.Dialog.exec()
+            return
+        
         # if lineEdit_4 > currentdate
         if self.dateEdit.date() < QDate.currentDate():
             self.Dialog = QtWidgets.QMessageBox()
@@ -129,6 +137,13 @@ class ProjectDetails(QtWidgets.QMainWindow):
             self.Dialog = QtWidgets.QMessageBox()
             self.Dialog.setWindowTitle("Error")
             self.Dialog.setText("Please Enter CVV")
+            self.Dialog.exec()
+            return
+        
+        if len(self.lineEdit_4.text())<3:
+            self.Dialog = QtWidgets.QMessageBox()
+            self.Dialog.setWindowTitle("Error")
+            self.Dialog.setText("Please Enter a Valid CVV")
             self.Dialog.exec()
             return
         

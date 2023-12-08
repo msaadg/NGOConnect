@@ -45,37 +45,36 @@ class UserData(QtWidgets.QMainWindow):
                        order by(donation.donationDateTime) desc
                        """, userID)
         data=cursor.fetchall()
-        rows=len(data)
-        cols=len(data[0])
-        for col_index in range(cols):
-            self.tableWidget.setColumnWidth(3, 200)
-
-        self.tableWidget.setRowCount(rows)
-        self.tableWidget.setColumnCount(cols)
-        for row_index, row_data in enumerate(data):
-            for col_index, cell_data in enumerate(row_data):
-                item = QTableWidgetItem(str(cell_data))
-                self.tableWidget.setItem(row_index, col_index, item)
-        self.tableWidget.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        if data:
+            rows=len(data)
+            cols=len(data[0])
+            for col_index in range(cols):
+                self.tableWidget.setColumnWidth(3, 200)
+    
+            self.tableWidget.setRowCount(rows)
+            self.tableWidget.setColumnCount(cols)
+            for row_index, row_data in enumerate(data):
+                for col_index, cell_data in enumerate(row_data):
+                    item = QTableWidgetItem(str(cell_data))
+                    self.tableWidget.setItem(row_index, col_index, item)
+            self.tableWidget.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
 
 
 
         connection.close()
 
     def ProjectSearch(self):
-        if self.checkBox_2.isChecked() :
-            self.comboBox_3.setEnabled(True)
-            connection = pyodbc.connect(connectionString.connection_string)
-            cursor = connection.cursor()
-            #load all projects in comboBox_3
-            cursor.execute("SELECT projectName FROM Project")
-            self.comboBox_3.clear()
-            self.comboBox_3.addItem("")
-            for row in cursor.fetchall():
-                self.comboBox_3.addItem(row[0])
-            connection.close()
-        else:
-            self.comboBox_3.setEnabled(False)
+        self.comboBox_3.setEnabled(True)
+        connection = pyodbc.connect(connectionString.connection_string)
+        cursor = connection.cursor()
+        #load all projects in comboBox_3
+        cursor.execute("SELECT distinct projectName FROM Project")
+        self.comboBox_3.clear()
+        self.comboBox_3.addItem("")
+        for row in cursor.fetchall():
+            self.comboBox_3.addItem(row[0])
+        connection.close()
+ 
 
 
     def NGOSearch(self):
@@ -99,7 +98,7 @@ class UserData(QtWidgets.QMainWindow):
             connection = pyodbc.connect(connectionString.connection_string)
             cursor = connection.cursor()
             #load all categories in comboBox_4
-            cursor.execute("SELECT categoryName FROM category")
+            cursor.execute("SELECT distinct categoryName FROM Project")
             self.comboBox_4.clear()
             self.comboBox_4.addItem("")
             for row in cursor.fetchall():
@@ -114,7 +113,7 @@ class UserData(QtWidgets.QMainWindow):
             connection = pyodbc.connect(connectionString.connection_string)
             cursor = connection.cursor()
             #load all areas in comboBox_5
-            cursor.execute("SELECT areaName FROM Area")
+            cursor.execute("SELECT distinct areaName FROM Project")
             self.comboBox_5.clear()
             self.comboBox_5.addItem("")
             for row in cursor.fetchall():
@@ -126,7 +125,7 @@ class UserData(QtWidgets.QMainWindow):
 
     def ProjectSearchButton(self, userID):
         # self.SearchButton.setEnabled(False)
-        if self.checkBox_2.isChecked() and self.comboBox_3.currentText():
+        if self.comboBox_3.currentText():
             # self.SearchButton.setEnabled(True)
             selected_project=self.comboBox_3.currentText()
             connection = pyodbc.connect(connectionString.connection_string)
