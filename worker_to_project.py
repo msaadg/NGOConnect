@@ -4,6 +4,7 @@ from PyQt6.QtGui import QStandardItemModel, QStandardItem
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 import sys
 import pyodbc
+import connectionString
 
 class WorkerToProject(QtWidgets.QMainWindow):
     def __init__(self, projectID):
@@ -28,15 +29,7 @@ class WorkerToProject(QtWidgets.QMainWindow):
         self.workers.setCurrentIndex(-1)
 
     def loadWorkers(self, projectID):
-        connection = pyodbc.connect(
-            'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # use_windows_authentication = True 
-        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
-
+        connection = pyodbc.connect(connectionString.connection_string)
         cursor = connection.cursor()
         cursor.execute("SELECT ngoID FROM Project WHERE projectID = ?", projectID)
         ngoID = cursor.fetchall()[0][0]

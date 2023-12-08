@@ -3,6 +3,7 @@ from PyQt6.QtCore import QDate, QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
+import connectionString
 
 from add_worker import AddWorker
 from update_worker import UpdateWorker
@@ -36,14 +37,7 @@ class WorkerData(QtWidgets.QMainWindow):
         self.loadWorkersData(ngoID)
 
     def loadSearchData(self, ngoID):
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # use_windows_authentication = True 
-        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(connectionString.connection_string)
 
         cursor = connection.cursor()
         #load all workers email in emailCombobox
@@ -63,14 +57,7 @@ class WorkerData(QtWidgets.QMainWindow):
         connection.close()
 
     def loadWorkersData(self, ngoID):
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # use_windows_authentication = True 
-        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(connectionString.connection_string)
 
         cursor = connection.cursor()
 
@@ -243,16 +230,7 @@ class WorkerData(QtWidgets.QMainWindow):
         Option = Dialog.exec()
         if Option == QtWidgets.QMessageBox.StandardButton.Yes:
             workerEmail = self.workerDetails.item(self.workerDetails.currentRow(), 0).text()
-            connection = pyodbc.connect(
-                    'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-            )
-
-            # server = 'SABIR\SQLEXPRESS'
-            # database = 'NGOConnect'  # Name of your NGOConnect database
-            # use_windows_authentication = True 
-            # connection = pyodbc.connect(
-            #         'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-            # )
+            connection = pyodbc.connect(connectionString.connection_string)
             
             cursor = connection.cursor()
             cursor.execute("SELECT workerID FROM Worker WHERE workerEmail = ?", workerEmail)

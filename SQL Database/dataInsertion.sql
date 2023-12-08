@@ -107,10 +107,6 @@ UPDATE Project
 SET categoryName = 'Social Welfare'
 WHERE projectName = 'Edhi Home';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2cac155ef98c26e1932fcc9f7d3fa50391058318
 UPDATE Project
 SET areaName = 'Gulshan-e-Iqbal'
 WHERE projectName IN ('Edhi Home', 'The Citizens Foundation School');
@@ -125,8 +121,4 @@ WHERE projectName IN ('Akhuwat Microfinance Program', 'Saylani Mobile Clinic');
 
 UPDATE Project
 SET areaName = 'Defence'
-<<<<<<< HEAD
-WHERE projectName IN ('Akhuwat Education Program', 'Saylani Eye Camp');
-=======
 WHERE projectName IN ('Akhuwat Education Program', 'Saylani Eye Camp');
->>>>>>> 2cac155ef98c26e1932fcc9f7d3fa50391058318

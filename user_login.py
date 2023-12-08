@@ -3,6 +3,7 @@ from PyQt6.QtCore import QDate, QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
+import connectionString
 
 from UserScreen import UserData
 
@@ -23,15 +24,7 @@ class UserLogin(QtWidgets.QMainWindow):
         userEmail = self.userEmail.text()
         userPassword = self.userPassword.text()
 
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect datab
-        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
-
-
+        connection = pyodbc.connect(connectionString.connection_string)
         cursor = connection.cursor()
 
         # get all emails 

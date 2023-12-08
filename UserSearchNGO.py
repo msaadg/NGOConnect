@@ -3,6 +3,7 @@ from PyQt6.QtCore import QDate, QTimer, pyqtSignal
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QListWidget, QListWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 import pyodbc
+import connectionString
 
 
 
@@ -22,13 +23,7 @@ class NGODetails(QtWidgets.QMainWindow):
         
         self.lineEdit.setText(self.selected_NGO)
         self.lineEdit.setEnabled(False)
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(connectionString.connection_string)
         cursor = connection.cursor()
         cursor.execute("select address from NGO where name=?", self.selected_NGO)
         ngo_address=cursor.fetchall()[0][0]
@@ -71,13 +66,7 @@ class NGODetails(QtWidgets.QMainWindow):
             # self.view_button_connection = True
 
     def ShowProject(self, selected_project, selected_NGO, ngo_ID, userID, selected_category, selected_area):
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect'  # Name of your NGOConnect database
-        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(connectionString.connection_string)
         cursor = connection.cursor()
         cursor.execute("select projectID from Project where projectName=? and areaName=? and categoryName=?", selected_project, selected_area, selected_category)
         projectID=cursor.fetchall()[0][0]
@@ -165,13 +154,7 @@ class ProjectDetails(QtWidgets.QMainWindow):
             Dialog2.exec()
             self.close()
 
-            connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-            )
-
-            # server = 'SABIR\SQLEXPRESS'
-            # database = 'NGOConnect'  # Name of your NGOConnect datab
-            # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+            connection = pyodbc.connect(connectionString.connection_string)            
             cursor = connection.cursor()
             add_query="""
                 INSERT INTO Donation(projectID, userID, donationDateTime, amount)
@@ -192,25 +175,44 @@ class ProjectDetails(QtWidgets.QMainWindow):
 
         
 class NGOs(QtWidgets.QMainWindow):  
-    def __init__(self, _selected_Category, _selected_Area,):
+    def __init__(self, _selected_Category, _selected_Area, _selected_NGO):
         self.selected_Category=_selected_Category
         self.selected_Area=_selected_Area
+        self.selected_NGO=_selected_NGO
         super().__init__()
         uic.loadUi('Screens/screen2.ui', self)  #Screens/UserSignUp.ui
 
-        connection = pyodbc.connect(
-                'DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;DATABASE=NGOConnect;UID=sa;PWD=Password.1;TrustServerCertificate=yes;Connection Timeout=30;'
-        )
-
-        # server = 'SABIR\SQLEXPRESS'
-        # database = 'NGOConnect' 
-        # connection = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;')
+        connection = pyodbc.connect(connectionString.connection_string)
         cursor=connection.cursor()
-        if self.selected_Area!=None and self.selected_Category!=None:
+        if self.selected_Area!=None and self.selected_Category!=None and self.selected_NGO!=None:
+            print(self.selected_Category, self.selected_Area, self.selected_NGO)
+            cursor.execute("select ngoID from NGO where name=?", self.selected_NGO)
+            ngoID=cursor.fetchall()[0][0]
+            print(ngoID)
+
             cursor.execute("""
                             select projectName from Project
-                           where categoryName=? and areaName=?
-                            """, self.selected_Category, self.selected_Area)
+                           where categoryName=? and areaName=? and ngoID=?
+                            """, self.selected_Category, self.selected_Area, ngoID)
+            
+        elif self.selected_Area!=None and self.selected_NGO!=None:
+            cursor.execute("select ngoID from NGO where name=?", self.selected_NGO)
+            ngoID=cursor.fetchall()[0][0]
+            cursor.execute("""
+                            select projectName from Project
+                           where areaName=? and ngoID=?
+                            """,self.selected_Area, ngoID)
+            
+        elif self.selected_Category!=None and self.selected_NGO!=None:
+            cursor.execute("select ngoID from NGO where name=?", self.selected_NGO)
+            ngoID=cursor.fetchall()[0][0]
+
+            cursor.execute("""
+                            select projectName from Project
+                           where categoryName=? and ngoID=?
+                            """, self.selected_Category, ngoID)
+
+
         elif self.selected_Area!=None:
             cursor.execute("""
                             select projectName from Project
